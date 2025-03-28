@@ -9,7 +9,7 @@ public class Transaccion {
     private CategoriaTransaccion categoria;
     private TipoTransaccion tipo;
 
-    public Transaccion(LocalDateTime fecha, double monto, String descripcion, CategoriaTransaccion categoria,TipoTransaccion tipo) {
+    public Transaccion(Builder builder) {
         this.fecha = fecha;
         this.monto = monto;
         this.descripcion = descripcion;
@@ -55,5 +55,44 @@ public class Transaccion {
 
     public void setTipo(TipoTransaccion tipo) {
         this.tipo = tipo;
+    }
+    public static class Builder {
+        private double monto;
+        private LocalDateTime fecha;
+        private String descripcion;
+        private CategoriaTransaccion categoria;
+        private TipoTransaccion tipo;
+
+        public Transaccion build() {
+            return new Transaccion(this);
+        }
+
+        public Builder monto(double monto) {
+            this.monto = monto;
+            return this;
+        }
+
+        public Builder fecha(LocalDateTime fecha) {
+            this.fecha = fecha;
+            return this;
+        }
+
+        public Builder descripcion(String descripcion) {
+            this.descripcion = descripcion;
+            return this;
+    }
+
+
+    public Builder categoria(CategoriaTransaccion categoria) {
+            this.categoria = categoria;
+            return this;
+    }
+
+    public Builder tipo(TipoTransaccion tipo) {
+            this.tipo = tipo;
+            return this;
+    }
+
+
     }
 }
