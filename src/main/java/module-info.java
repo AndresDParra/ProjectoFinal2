@@ -10,6 +10,7 @@ module com.example.projectofinal2 {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
+    requires com.google.gson;
 
     opens com.example.projectofinal2 to javafx.fxml;
     exports com.example.projectofinal2;

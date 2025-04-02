@@ -5,7 +5,8 @@ import java.util.ArrayList;
 public class CuentaBanco {
     private String idCuenta, numeroCuenta, nombreBanco;
     private double saldo;
-    private static ArrayList<Transaccion> transacciones;
+    static ArrayList<Transaccion> transacciones;
+    private static ArrayList<DTOTransaccion> DTOtransacciones;
 
     public CuentaBanco(String idCuenta, String numeroCuenta, String nombreBanco, double saldo) {
         this.idCuenta = idCuenta;
@@ -13,6 +14,7 @@ public class CuentaBanco {
         this.nombreBanco = nombreBanco;
         this.saldo = saldo;
         transacciones = new ArrayList<>();
+        DTOtransacciones = new ArrayList<>();
     }
 
     public String getIdCuenta() {
@@ -53,5 +55,13 @@ public class CuentaBanco {
 
     public void setTransacciones(ArrayList<Transaccion> transacciones) {
         CuentaBanco.transacciones = transacciones;
+    }
+
+    public static ArrayList<DTOTransaccion> getDTOtransacciones() {
+        return DTOtransacciones;
+    }
+
+    public static void setDTOtransacciones(ArrayList<DTOTransaccion> DTOtransacciones) {
+        CuentaBanco.DTOtransacciones = DTOtransacciones;
     }
 }
