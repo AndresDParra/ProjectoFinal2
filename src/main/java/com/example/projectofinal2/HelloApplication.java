@@ -13,6 +13,7 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
+
         saveDTOTransaccionesToFile("/Users/andresdavidparra/Documents/Folder para cosas importantes/TrabajoMiercolesYulbrainer/carpetaJson/transacciones.json");
     }
 
