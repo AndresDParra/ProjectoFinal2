@@ -1,6 +1,6 @@
 package com.example.projectofinal2.Clases.model;
 
-public class    Usuario   {
+public class Usuario   {
 String nombre, id, contrasenia, correo, telefono;
 
     public Usuario(String nombre, String id, String contrasenia, String correo, String telefono) {

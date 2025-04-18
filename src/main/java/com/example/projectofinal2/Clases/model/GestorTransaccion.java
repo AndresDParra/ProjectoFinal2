@@ -10,11 +10,12 @@ import java.lang.reflect.Type;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+import static com.example.projectofinal2.Clases.model.BilleteraVirtual.DTOtransacciones;
 import static com.example.projectofinal2.Clases.model.CuentaBanco.transacciones;
 
 public class GestorTransaccion {
 
-    public void crearTransaccion(double monto, LocalDateTime fecha, String descripcion, CategoriaTransaccion categoriaTransaccion, TipoTransaccion tipoTransaccion) {
+    public static void crearTransaccion(double monto, LocalDateTime fecha, String descripcion, CategoriaTransaccion categoriaTransaccion, TipoTransaccion tipoTransaccion) {
 
         Transaccion transaccion = new Transaccion(fecha, monto, descripcion, categoriaTransaccion, tipoTransaccion);
         CuentaBanco.getTransacciones().add(transaccion);
@@ -23,7 +24,7 @@ public class GestorTransaccion {
 
     }
 
-    public void saveTransaccionesToFile(String filePath) {
+    public static void saveTransaccionesToFile(String filePath) {
         Gson gson = new Gson();
         try (FileWriter writer = new FileWriter(filePath)) {
             gson.toJson(transacciones, writer);
@@ -32,7 +33,7 @@ public class GestorTransaccion {
         }
     }
 
-    public void loadTransaccionesFromFile(String filePath) {
+    public static void loadTransaccionesFromFile(String filePath) {
         Gson gson = new Gson();
         try (FileReader reader = new FileReader(filePath)) {
             Type listType = new TypeToken<ArrayList<DTOTransaccion>>() {}.getType();
@@ -41,4 +42,13 @@ public class GestorTransaccion {
             e.printStackTrace();
         }
     }
+    public static void saveDTOTransaccionesToFile(String filePath) {
+        Gson gson = new Gson();
+        try (FileWriter writer = new FileWriter(filePath)) {
+            gson.toJson(DTOtransacciones, writer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

@@ -11,7 +11,10 @@ module com.example.projectofinal2 {
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
     requires com.google.gson;
+    requires com.nimbusds.jose.jwt;
 
     opens com.example.projectofinal2 to javafx.fxml;
+    opens com.example.projectofinal2.Clases.model to com.nimbusds.jose.jwt;
+    opens com.example.projectofinal2.Controllers to javafx.fxml;
     exports com.example.projectofinal2;
 }

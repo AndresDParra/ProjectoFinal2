@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="407.0" prefWidth="887.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectofinal2.Controllers.CrudController">
+    <top>
+        <TabPane>
+            <tabs>
+                <Tab text="Usuarios">
+                    <content>
+                        <VBox spacing="10">
+                            <children>
+                                <TextField fx:id="nombreUsuario" promptText="Nombre" />
+                                <TextField fx:id="idUsuario" promptText="ID" />
+                                <PasswordField fx:id="contraseniaUsuario" promptText="Contraseña" />
+                                <TextField fx:id="correoUsuario" promptText="Correo" />
+                                <TextField fx:id="telefonoUsuario" promptText="Teléfono" />
+                                <Button onAction="#agregarUsuario" text="Agregar Usuario" />
+                                <TableView fx:id="tablaUsuarios">
+                                    <columns>
+                                        <TableColumn fx:id="colNombreUsuario" text="Nombre" />
+                                        <TableColumn fx:id="colIdUsuario" text="ID" />
+                                        <TableColumn fx:id="colCorreoUsuario" text="Correo" />
+                                        <TableColumn fx:id="colTelefonoUsuario" text="Teléfono" />
+                                    </columns>
+                                </TableView>
+                            </children>
+                        </VBox>
+                    </content>
+                </Tab>
+                <Tab text="Administradores">
+                    <content>
+                        <VBox spacing="10">
+                            <children>
+                                <TextField fx:id="nombreAdmin" promptText="Nombre" />
+                                <TextField fx:id="idAdmin" promptText="ID" />
+                                <PasswordField fx:id="contraseniaAdmin" promptText="Contraseña" />
+                                <Button onAction="#agregarAdmin" text="Agregar Administrador" />
+                                <TableView fx:id="tablaAdmins">
+                                    <columns>
+                                        <TableColumn fx:id="colNombreAdmin" text="Nombre" />
+                                        <TableColumn fx:id="colIdAdmin" text="ID" />
+                                    </columns>
+                                </TableView>
+                            </children>
+                        </VBox>
+                    </content>
+                </Tab>
+                <Tab text="Cuentas Bancarias">
+                    <content>
+                        <VBox spacing="10">
+                            <children>
+                                <TextField fx:id="idCuenta" promptText="ID Cuenta" />
+                                <TextField fx:id="numeroCuenta" promptText="Número Cuenta" />
+                                <TextField fx:id="nombreBanco" promptText="Banco" />
+                                <TextField fx:id="saldoCuenta" promptText="Saldo" />
+                                <ComboBox fx:id="tipoCuenta" />
+                                <Button onAction="#agregarCuenta" text="Agregar Cuenta" />
+                                <TableView fx:id="tablaCuentas">
+                                    <columns>
+                                        <TableColumn fx:id="colIdCuenta" text="ID Cuenta" />
+                                        <TableColumn fx:id="colNumeroCuenta" text="Número Cuenta" />
+                                        <TableColumn fx:id="colBancoCuenta" text="Banco" />
+                                        <TableColumn fx:id="colSaldoCuenta" text="Saldo" />
+                                        <TableColumn fx:id="colTipoCuenta" text="Tipo" />
+                                    </columns>
+                                </TableView>
+                            </children>
+                        </VBox>
+                    </content>
+                </Tab>
+                <Tab text="Transacciones">
+                    <content>
+                        <VBox spacing="10">
+                            <children>
+                                <TextField fx:id="montoTransaccion" promptText="Monto" />
+                                <TextField fx:id="descripcionTransaccion" promptText="Descripción" />
+                                <DatePicker fx:id="fechaTransaccion" promptText="Fecha Transaccion" />
+                                <ComboBox fx:id="categoriaTransaccion" />
+                                <ComboBox fx:id="tipoTransaccion" />
+                                <Button onAction="#agregarTransaccion" text="Agregar Transacción" />
+                                <TableView fx:id="tablaTransacciones">
+                                    <columns>
+                                        <TableColumn fx:id="colMontoTransaccion" text="Monto" />
+                                        <TableColumn fx:id="colFechaTransaccion" text="Fecha" />
+                                        <TableColumn fx:id="colDescripcionTransaccion" text="Descripción" />
+                                        <TableColumn fx:id="colCategoriaTransaccion" text="Categoría" />
+                                        <TableColumn fx:id="colTipoTransaccion" text="Tipo" />
+                                    </columns>
+                                </TableView>
+                            </children>
+                        </VBox>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </top>
+</BorderPane>

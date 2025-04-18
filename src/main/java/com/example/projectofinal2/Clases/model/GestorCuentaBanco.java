@@ -2,12 +2,12 @@ package com.example.projectofinal2.Clases.model;
 
 public class GestorCuentaBanco {
 
-    public void crearCuentaBanco(String id, String nombre, String contrasenia,double saldoInicial ) {
+    public static void crearCuentaBanco(String id, String nombre, String contrasenia,double saldoInicial ) {
         CuentaBanco cuentaBanco = new CuentaBanco(id, nombre, contrasenia, saldoInicial);
         BilleteraVirtual.getCuentasBanco().add(cuentaBanco);
     }
 
-    public void eliminarCuentaBanco(String id) {
+    public static void eliminarCuentaBanco(String id) {
         for (CuentaBanco cuentaBanco : BilleteraVirtual.getCuentasBanco()) {
             if (cuentaBanco.getIdCuenta().equals(id)) {
                 BilleteraVirtual.getCuentasBanco().remove(cuentaBanco);
@@ -16,7 +16,7 @@ public class GestorCuentaBanco {
         }
     }
 
-    public void modificarCuentaBanco(String id, String nombre, String contrasenia, double saldo) {
+    public static void modificarCuentaBanco(String id, String nombre, String contrasenia, double saldo) {
         for (CuentaBanco cuentaBanco : BilleteraVirtual.getCuentasBanco()) {
             if (cuentaBanco.getIdCuenta().equals(id)) {
                 cuentaBanco.setNombreBanco(nombre);

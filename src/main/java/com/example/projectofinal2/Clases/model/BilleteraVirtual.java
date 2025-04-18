@@ -1,55 +1,49 @@
 package com.example.projectofinal2.Clases.model;
 
 import java.util.ArrayList;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.lang.reflect.Type;
-import java.util.ArrayList;
 
 
 public class BilleteraVirtual {
 
-    private BilleteraVirtual instance;
-    private String idBilletera, nombreBilletera;
-    private double saldo;
+    private static BilleteraVirtual instance;
+    private static String idBilletera;
+    private static String nombreBilletera;
+    private static double Dolares;
     private static ArrayList<CuentaBanco> cuentasBanco;
-    private static ArrayList<DTOTransaccion> DTOtransacciones;
+    static ArrayList<DTOTransaccion> DTOtransacciones;
 
-    public BilleteraVirtual(String idBilletera, String nombreBilletera, double saldo) {
-        this.idBilletera = idBilletera;
-        this.nombreBilletera = nombreBilletera;
-        this.saldo = saldo;
+    public BilleteraVirtual(String idBilletera, String nombreBilletera, double Dolares) {
+        BilleteraVirtual.idBilletera = idBilletera;
+        BilleteraVirtual.nombreBilletera = nombreBilletera;
+        BilleteraVirtual.Dolares = Dolares;
         cuentasBanco = new ArrayList<>();
         instance = getInstance();
         DTOtransacciones = new ArrayList<>();
+        BilleteraVirtual.instance = getInstance();
     }
 
     public String getIdBilletera() {
         return idBilletera;
     }
 
-    public void setIdBilletera(String idBilletera) {
-        this.idBilletera = idBilletera;
+    public static void setIdBilletera(String idBilletera) {
+        BilleteraVirtual.idBilletera = idBilletera;
     }
 
     public String getNombreBilletera() {
         return nombreBilletera;
     }
 
-    public void setNombreBilletera(String nombreBilletera) {
-        this.nombreBilletera = nombreBilletera;
+    public static void setNombreBilletera(String nombreBilletera) {
+        BilleteraVirtual.nombreBilletera = nombreBilletera;
     }
 
-    public double getSaldo() {
-        return saldo;
+    public double getDolares() {
+        return Dolares;
     }
 
-    public void setSaldo(double saldo) {
-        this.saldo = saldo;
+    public static void setDolares(double dolares) {
+        BilleteraVirtual.Dolares = dolares;
     }
 
     public static ArrayList<CuentaBanco> getCuentasBanco() {
@@ -59,7 +53,7 @@ public class BilleteraVirtual {
     public void setCuentaBanco(ArrayList<CuentaBanco> cuentasBanco) {
         BilleteraVirtual.cuentasBanco = cuentasBanco;
     }
-    public BilleteraVirtual getInstance(){
+    public static BilleteraVirtual getInstance(){
         if (instance == null) {
             instance = new BilleteraVirtual("1", "Billetera", 0);
         }
@@ -78,23 +72,15 @@ public class BilleteraVirtual {
         BilleteraVirtual.DTOtransacciones = DTOtransacciones;
     }
 
-    public static void saveDTOTransaccionesToFile(String filePath) {
-        Gson gson = new Gson();
-        try (FileWriter writer = new FileWriter(filePath)) {
-            gson.toJson(DTOtransacciones, writer);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
-    public void loadDTOTransaccionesFromFile(String filePath) {
-        Gson gson = new Gson();
-        try (FileReader reader = new FileReader(filePath)) {
-            Type listType = new TypeToken<ArrayList<DTOTransaccion>>() {}.getType();
-            DTOtransacciones = gson.fromJson(reader, listType);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+
+    public static void InitializeAll(){
+        Configurador configurador = Configurador.getInstance();
+        configurador.inicializarBilletera();
+        DTOtransacciones = new ArrayList<>();
+        cuentasBanco = new ArrayList<>();
+
     }
 
 }
