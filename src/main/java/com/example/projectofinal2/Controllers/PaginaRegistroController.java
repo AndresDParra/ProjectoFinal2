@@ -11,15 +11,18 @@ public class PaginaRegistroController {
     public TextField EspacioIDCuenta;
     public TextField EspacioPIN;
     public TextField EspacioNombreUsuario;
-    public TextField EspacioNumeroTel;
+    public TextField EspacioID;
     public Button ButtonGuardarRegistro;
+    public TextField EspacioCorreo;
 
-    public PaginaRegistroController(TextField espacioIDCuenta, TextField espacioPIN, TextField espacioNombreUsuario, TextField espacioNumeroTel, Button buttonGuardarRegistro) {
+
+    public PaginaRegistroController(TextField espacioIDCuenta, TextField espacioPIN, TextField espacioNombreUsuario, TextField espacioNumeroTel, Button buttonGuardarRegistro, TextField espacioID, TextField espacioCorreo) {
         EspacioIDCuenta = espacioIDCuenta;
         EspacioPIN = espacioPIN;
         EspacioNombreUsuario = espacioNombreUsuario;
-        EspacioNumeroTel = espacioNumeroTel;
         ButtonGuardarRegistro = buttonGuardarRegistro;
+        EspacioID = espacioID;
+        EspacioCorreo = espacioCorreo;
     }
     public TextField getEspacioIDCuenta() {
         return EspacioIDCuenta;
@@ -45,14 +48,6 @@ public class PaginaRegistroController {
         EspacioNombreUsuario = espacioNombreUsuario;
     }
 
-    public TextField getEspacioNumeroTel() {
-        return EspacioNumeroTel;
-    }
-
-    public void setEspacioNumeroTel(TextField espacioNumeroTel) {
-        EspacioNumeroTel = espacioNumeroTel;
-    }
-
     public Button getButtonGuardarRegistro() {
         return ButtonGuardarRegistro;
     }
@@ -61,15 +56,32 @@ public class PaginaRegistroController {
         ButtonGuardarRegistro = buttonGuardarRegistro;
     }
 
+    public TextField getEspacioID() {
+        return EspacioID;
+    }
+
+    public void setEspacioID(TextField espacioID) {
+        EspacioID = espacioID;
+    }
+
+    public TextField getEspacioCorreo() {
+        return EspacioCorreo;
+    }
+
+    public void setEspacioCorreo(TextField espacioCorreo) {
+        EspacioCorreo = espacioCorreo;
+    }
+
     public PaginaRegistroController() {
     }
 
     public void Guardar(ActionEvent actionEvent) {
-        GestorCuentaBanco.crearCuentaBanco(EspacioNombreUsuario.getText(), EspacioIDCuenta.getText(), EspacioPIN.getText(), 1000);
+        GestorCuentaBanco.crearCuentaBanco(EspacioID.getText(), 1000, EspacioPIN.getText(), EspacioNombreUsuario.getText(), EspacioIDCuenta.getText(), EspacioCorreo.getText(), EspacioIDCuenta.getText());
         EspacioIDCuenta.clear();
+        EspacioID.clear();
         EspacioPIN.clear();
         EspacioNombreUsuario.clear();
-        EspacioNumeroTel.clear();
+        EspacioCorreo.clear();
         GSON.saveCuentaDeBancoToFile("/Users/andresdavidparra/Documents/Folder para cosas importantes/TrabajoMiercolesYulbrainer/carpetaJson/RegistroCuentaBanco.json");
     }
 }

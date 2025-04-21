@@ -1,12 +1,14 @@
 package com.example.projectofinal2.Clases.model;
 
 public class Usuario   {
-String nombre, id, contrasenia, correo, telefono;
+String nombre;
+    String id;
+    String correo;
+    String telefono;
 
-    public Usuario(String nombre, String id, String contrasenia, String correo, String telefono) {
+    public Usuario(String nombre, String id, String correo, String telefono) {
         this.nombre = nombre;
         this.id = id;
-        this.contrasenia = contrasenia;
         this.correo = correo;
         this.telefono = telefono;
     }
@@ -25,14 +27,6 @@ String nombre, id, contrasenia, correo, telefono;
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getContrasenia() {
-        return contrasenia;
-    }
-
-    public void setContrasenia(String contrasenia) {
-        this.contrasenia = contrasenia;
     }
 
     public String getTelefono() {

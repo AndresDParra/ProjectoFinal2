@@ -2,8 +2,9 @@ package com.example.projectofinal2.Clases.model;
 
 public class GestorCuentaBanco {
 
-    public static void crearCuentaBanco(String id, String nombre, String contrasenia,double saldoInicial ) {
-        CuentaBanco cuentaBanco = new CuentaBanco(id, nombre, contrasenia, saldoInicial);
+    public static void crearCuentaBanco(String id,double saldoInicial, String contrasenia, String nombre, String idUsuario, String correo, String telefono) {
+        Usuario usuario = new Usuario(nombre, idUsuario, correo, telefono);
+        CuentaBanco cuentaBanco = new CuentaBanco(id, saldoInicial, usuario, contrasenia);
         BilleteraVirtual.getCuentasBanco().add(cuentaBanco);
     }
 
@@ -21,7 +22,6 @@ public class GestorCuentaBanco {
             if (cuentaBanco.getIdCuenta().equals(id)) {
                 cuentaBanco.setNombreBanco(nombre);
                 cuentaBanco.setSaldo(saldo);
-                cuentaBanco.setNumeroCuenta(contrasenia);
                 break;
             }
         }
