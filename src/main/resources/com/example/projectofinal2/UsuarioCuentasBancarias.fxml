@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Pos?>
+
+<?import javafx.scene.shape.Rectangle?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.projectofinal2.controllers.CuentasBancariasController"
+            prefWidth="800" prefHeight="600"
+            style="-fx-background-color: white;">
+
+    <children>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="A020F0" height="99.0" stroke="A020F0" strokeType="INSIDE" width="852.0" />
+        <Label layoutX="290.0" layoutY="40.0" text="Gestión de Cuentas Bancarias" style="-fx-text-fill: white;">
+            <font>
+                <Font name="Arial Bold" size="30.0" />
+            </font>
+        </Label>
+
+        <ListView fx:id="cuentasBancariasListView" layoutX="50.0" layoutY="100.0" prefHeight="300.0" prefWidth="700.0" style="-fx-background-color: white;">
+            <items>
+            </items>
+        </ListView>
+
+        <Button text="Agregar Cuenta Bancaria" layoutX="300.0" layoutY="420.0"
+                style="-fx-background-color: #A020F0; -fx-text-fill: white;"
+                onAction="#agregarCuentaBancaria" prefWidth="200.0" />
+
+        <Button text="Editar Cuenta Bancaria" layoutX="550.0" layoutY="420.0"
+                style="-fx-background-color: #A020F0; -fx-text-fill: white;"
+                onAction="#editarCuentaBancaria" prefWidth="200.0" />
+
+        <Button text="Eliminar Cuenta Bancaria" layoutX="550.0" layoutY="460.0"
+                style="-fx-background-color: #A020F0; -fx-text-fill: white;"
+                onAction="#eliminarCuentaBancaria" prefWidth="200.0" />
+
+
+    </children>
+</AnchorPane>
+

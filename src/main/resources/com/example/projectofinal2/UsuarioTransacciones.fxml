@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Pos?>
+
+<AnchorPane prefHeight="600" prefWidth="800" style="-fx-background-color: white;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="com.example.projectofinal2.controllers.TransaccionesController">
+
+    <children>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="A020F0" height="97.0" stroke="A020F0" strokeType="INSIDE" width="888.0" />
+        <Label layoutX="290.0" layoutY="40.0" style="-fx-text-fill: white;" text="Gestión de Transacciones">
+            <font>
+                <Font name="Arial Bold" size="30.0" />
+            </font>
+        </Label>
+
+        <ListView fx:id="transaccionesListView" layoutX="50.0" layoutY="100.0" prefHeight="300.0" prefWidth="700.0" style="-fx-background-color: white;">
+            <items>
+            </items>
+        </ListView>
+
+
+        <Button layoutX="300.0" layoutY="420.0" onAction="#agregarTransaccion" prefWidth="200.0" style="-fx-background-color: A020F0; -fx-text-fill: white;" text="Agregar Transacción" />
+
+        <Button layoutX="550.0" layoutY="420.0" onAction="#editarTransaccion" prefWidth="200.0" style="-fx-background-color: A020F0; -fx-text-fill: white;" text="Editar Transacción" />
+
+        <Button layoutX="550.0" layoutY="460.0" onAction="#eliminarTransaccion" prefWidth="200.0" style="-fx-background-color: A020F0; -fx-text-fill: white;" text="Eliminar Transacción" />
+
+
+    </children>
+</AnchorPane>

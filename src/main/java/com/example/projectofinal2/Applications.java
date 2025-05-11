@@ -13,7 +13,7 @@ public class Applications extends Application {
     public void start(Stage stage) throws IOException {
         BilleteraVirtual.InitializeAll();
         FXMLLoader fxmlLoader = new FXMLLoader(Applications.class.getResource("IniciarSesion.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 480, 480);
+        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
         stage.setTitle("Welcome to the UQ Library!");
         stage.setScene(scene);
         stage.show();
