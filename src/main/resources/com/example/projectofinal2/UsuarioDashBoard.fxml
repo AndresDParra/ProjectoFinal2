@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane prefHeight="600" prefWidth="900" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectofinal2.Controllers.PaginaUsuarioDashBoardController">
+    <left>
+        <VBox prefHeight="600.0" prefWidth="181.0" spacing="20" style="-fx-background-color: #A020F0" BorderPane.alignment="CENTER">
+            <children>
+                <Label style="-fx-text-fill: white;" text="Venequi">
+                    <font>
+                        <Font name="Arial Bold" size="26" />
+                    </font>
+                </Label>
+                <Button fx:id="ButtonBienvenida" onAction="#mostrarBienvenida" prefWidth="180" style="-fx-background-color: white; -fx-text-fill: #A020F0;" text="Bienvenida" />
+                <Button fx:id="ButtonPerfil" onAction="#mostrarPerfil" prefWidth="180" style="-fx-background-color: white; -fx-text-fill: #A020F0;" text="Perfil" />
+                <Button fx:id="ButtomTransacciones" onAction="#mostrarTransacciones" prefWidth="180" style="-fx-background-color: white; -fx-text-fill: #A020F0;" text="Transacciones" />
+                <Button fx:id="ButtonPresupuesto" onAction="#mostrarPresupuestos" prefWidth="180" style="-fx-background-color: white; -fx-text-fill: #A020F0;" text="Presupuestos" />
+                <Button fx:id="ButtonCerrarSesion" onAction="#cerrarSesion" prefWidth="180" style="-fx-background-color: black; -fx-text-fill: white;" text="Cerrar sesión" />
+            </children>
+        </VBox>
+    </left>
+    <center>
+        <StackPane fx:id="contenidoPrincipal" />
+    </center>
+
+</BorderPane>

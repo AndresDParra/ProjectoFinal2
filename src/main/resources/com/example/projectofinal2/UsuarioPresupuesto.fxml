@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="600" prefWidth="800" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectofinal2.controllers.PresupuestosController">
+
+    <children>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="A020F0" height="99.0" stroke="A020F0" strokeType="INSIDE" width="852.0" />
+        <Label layoutX="290.0" layoutY="40.0" style="-fx-text-fill: white;" text="Gestión de Presupuestos">
+            <font>
+                <Font name="Arial Bold" size="30.0" />
+            </font>
+        </Label>
+
+        <ListView fx:id="presupuestosListView" layoutX="50.0" layoutY="100.0" prefHeight="300.0" prefWidth="700.0" style="-fx-background-color: white;">
+            <items>
+            </items>
+        </ListView>
+
+        <Button layoutX="300.0" layoutY="420.0" onAction="#agregarPresupuesto" prefWidth="200.0" style="-fx-background-color: #A020F0; -fx-text-fill: white;" text="Agregar Presupuesto" />
+
+        <Button layoutX="550.0" layoutY="420.0" onAction="#editarPresupuesto" prefWidth="200.0" style="-fx-background-color: #A020F0; -fx-text-fill: white;" text="Editar Presupuesto" />
+
+
+    </children>
+</AnchorPane>

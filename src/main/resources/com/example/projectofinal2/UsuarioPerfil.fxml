@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.projectofinal2.controllers.PerfilController"
+            prefWidth="800" prefHeight="600"
+            style="-fx-background-color: #white;">
+
+    <children>
+        <Label layoutX="340.0" layoutY="40.0" text="Mi Perfil" style="-fx-text-fill: A020F0;">
+            <font>
+                <Font name="Arial Bold" size="30.0" />
+            </font>
+        </Label>
+
+        <VBox layoutX="250.0" layoutY="100.0" spacing="15">
+            <Label fx:id="labelNombre" text="Nombre: Juan Pérez" style="-fx-text-fill: A020F0;">
+                <font>
+                    <Font size="16.0"/>
+                </font>
+            </Label>
+            <Label fx:id="labelCorreo" text="Correo: juan@example.com" style="-fx-text-fill: A020F0;">
+                <font>
+                    <Font size="16.0"/>
+                </font>
+            </Label>
+            <Label fx:id="labelTelefono" text="Teléfono: 123456789" style="-fx-text-fill: A020F0;">
+                <font>
+                    <Font size="16.0"/>
+                </font>
+            </Label>
+        </VBox>
+
+        <Button text="Editar Perfil" layoutX="325.0" layoutY="300.0"
+                style="-fx-background-color: A020F0; -fx-text-fill: #white;"
+                onAction="#editarPerfil" prefWidth="150.0" />
+
+
+    </children>
+</AnchorPane>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectofinal2.Controllers.PaginaRegistroController">
+   <children>
+      <Pane prefHeight="308.0" prefWidth="600.0" style="-fx-background-color: #A020F0;">
+         <children>
+            <TextField fx:id="EspacioID" layoutX="226.0" layoutY="130.0" />
+            <TextField fx:id="EspacioNombreUsuario" layoutX="226.0" layoutY="81.0" />
+            <TextField fx:id="EspacioPIN" layoutX="226.0" layoutY="229.0" />
+            <TextField fx:id="EspacioIDCuenta" layoutX="226.0" layoutY="31.0" />
+            <Label layoutX="157.0" layoutY="135.0" text="ID" textFill="WHITE" />
+            <Label layoutX="116.0" layoutY="35.0" text="Numero Telefono" textFill="WHITE" />
+            <Label layoutX="120.0" layoutY="86.0" prefHeight="3.0" prefWidth="87.0" text="Nombre Usuario" textFill="#f5f5f5" />
+            <Label layoutX="159.0" layoutY="234.0" text="PIN" textFill="WHITE" />
+            <Label layoutX="144.0" layoutY="273.0" />
+            <TextField fx:id="EspacioCorreo" layoutX="226.0" layoutY="182.0" />
+            <Label layoutX="145.0" layoutY="187.0" text="Correo" textFill="WHITE" />
+         </children>
+      </Pane>
+      <Pane layoutY="305.0" prefHeight="95.0" prefWidth="600.0" style="-fx-background-color: #000000;">
+         <children>
+            <Button fx:id="ButtonGuardarRegistro" layoutX="370.0" layoutY="35.0" mnemonicParsing="false" onAction="#Guardar" text="Guardar" />
+            <Button fx:id="ButtonVolver" layoutX="142.0" layoutY="35.0" mnemonicParsing="false" onAction="#regresar" text="Volver" />
+         </children></Pane>
+   </children>
+</AnchorPane>
