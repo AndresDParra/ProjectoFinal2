@@ -10,7 +10,7 @@ import com.nimbusds.jose.shaded.gson.Gson;
 import com.nimbusds.jose.shaded.gson.GsonBuilder;
 import com.nimbusds.jose.shaded.gson.reflect.TypeToken;
 
-public class xGSON {
+public class GSON {
     public static void loadDTOTransaccionesFromFile(String filePath) {
         Gson gson = new Gson();
         try (FileReader reader = new FileReader(filePath)) {

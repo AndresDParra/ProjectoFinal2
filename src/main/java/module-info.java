@@ -12,6 +12,8 @@ module com.example.projectofinal2 {
     requires com.almasb.fxgl.all;
     requires com.google.gson;
     requires com.nimbusds.jose.jwt;
+    requires static lombok;
+    requires io.github.cdimascio.dotenv.java;
 
     opens com.example.projectofinal2 to javafx.fxml;
     opens com.example.projectofinal2.Clases.model to com.nimbusds.jose.jwt;

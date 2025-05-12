@@ -7,9 +7,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import lombok.Getter;
 
 import java.io.IOException;
 
+@Getter
 public class PaginaUsuarioDashBoardController {
 
     public Button ButtonBienvenida;
@@ -31,48 +33,24 @@ public class PaginaUsuarioDashBoardController {
     public PaginaUsuarioDashBoardController() {
     }
 
-    public Button getButtonBienvenida() {
-        return ButtonBienvenida;
-    }
-
     public void setButtonBienvenida(Button buttonBienvenida) {
         ButtonBienvenida = buttonBienvenida;
-    }
-
-    public Button getButtonPerfil() {
-        return ButtonPerfil;
     }
 
     public void setButtonPerfil(Button buttonPerfil) {
         ButtonPerfil = buttonPerfil;
     }
 
-    public Button getButtomTransacciones() {
-        return ButtomTransacciones;
-    }
-
     public void setButtomTransacciones(Button buttomTransacciones) {
         ButtomTransacciones = buttomTransacciones;
-    }
-
-    public Button getButtonPresupuesto() {
-        return ButtonPresupuesto;
     }
 
     public void setButtonPresupuesto(Button buttonPresupuesto) {
         ButtonPresupuesto = buttonPresupuesto;
     }
 
-    public Button getButtonCerrarSesion() {
-        return ButtonCerrarSesion;
-    }
-
     public void setButtonCerrarSesion(Button buttonCerrarSesion) {
         ButtonCerrarSesion = buttonCerrarSesion;
-    }
-
-    public StackPane getContenidoPrincipal() {
-        return contenidoPrincipal;
     }
 
     public void setContenidoPrincipal(StackPane contenidoPrincipal) {
