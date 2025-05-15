@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane prefHeight="600" prefWidth="900" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectofinal2.Controllers.PaginaUsuarioDashBoardController">
+<BorderPane prefHeight="600" prefWidth="900" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectofinal2.controllers.PaginaUsuarioDashBoardController">
     <left>
         <VBox prefHeight="600.0" prefWidth="181.0" spacing="20" style="-fx-background-color: #A020F0" BorderPane.alignment="CENTER">
             <children>

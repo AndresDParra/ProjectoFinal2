@@ -6,7 +6,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="600" prefWidth="800" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectofinal2.controllers.PresupuestosController">
+<AnchorPane prefHeight="600" prefWidth="800" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectofinal2.controllers.PaginaPresupuestoController">
 
     <children>
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="A020F0" height="99.0" stroke="A020F0" strokeType="INSIDE" width="852.0" />
@@ -21,9 +21,9 @@
             </items>
         </ListView>
 
-        <Button layoutX="300.0" layoutY="420.0" onAction="#agregarPresupuesto" prefWidth="200.0" style="-fx-background-color: #A020F0; -fx-text-fill: white;" text="Agregar Presupuesto" />
+        <Button layoutX="300.0" fx:id="ButtonAgregarPresupuesto" layoutY="420.0" onAction="#agregarPresupuesto" prefWidth="200.0" style="-fx-background-color: #A020F0; -fx-text-fill: white;" text="Agregar Presupuesto" />
 
-        <Button layoutX="550.0" layoutY="420.0" onAction="#editarPresupuesto" prefWidth="200.0" style="-fx-background-color: #A020F0; -fx-text-fill: white;" text="Editar Presupuesto" />
+        <Button layoutX="550.0" fx:id="ButtonEditarPresupuesto" layoutY="420.0" onAction="#editarPresupuesto" prefWidth="200.0" style="-fx-background-color: #A020F0; -fx-text-fill: white;" text="Editar Presupuesto" />
 
 
     </children>

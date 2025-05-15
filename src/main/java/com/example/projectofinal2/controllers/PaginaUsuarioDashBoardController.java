@@ -1,4 +1,4 @@
-package com.example.projectofinal2.Controllers;
+package com.example.projectofinal2.controllers;
 
 import com.example.projectofinal2.Applications;
 import javafx.event.ActionEvent;

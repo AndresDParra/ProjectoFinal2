@@ -1,4 +1,6 @@
-package com.example.projectofinal2.Clases.model;
+package com.example.projectofinal2.model;
+
+import java.util.ArrayList;
 
 public class Configurador {
     // Singleton instance of Configurador
@@ -27,6 +29,7 @@ public class Configurador {
         BilleteraVirtual.setIdBilletera("12345");
         BilleteraVirtual.setNombreBilletera("Venequi");
         BilleteraVirtual.setDolares(Integer.MAX_VALUE);
+        BilleteraVirtual.setUsuarios(new ArrayList<Usuario>());
     }
 
     // Reset to default values

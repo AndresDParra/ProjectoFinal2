@@ -1,4 +1,4 @@
-package com.example.projectofinal2.Clases.model;
+package com.example.projectofinal2.model;
 
 import java.time.LocalDateTime;
 

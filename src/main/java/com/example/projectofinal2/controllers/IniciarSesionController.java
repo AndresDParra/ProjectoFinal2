@@ -1,8 +1,8 @@
-package com.example.projectofinal2.Controllers;
+package com.example.projectofinal2.controllers;
 
 import com.example.projectofinal2.Applications;
-import com.example.projectofinal2.Clases.model.BilleteraVirtual;
-import com.example.projectofinal2.Clases.model.CuentaBanco;
+import com.example.projectofinal2.model.BilleteraVirtual;
+import com.example.projectofinal2.model.CuentaBanco;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

@@ -1,11 +1,12 @@
 package com.example.projectofinal2;
 
-import com.example.projectofinal2.Clases.model.BilleteraVirtual;
+import com.example.projectofinal2.model.Administrador;
+import com.example.projectofinal2.model.BilleteraVirtual;
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
 import java.io.IOException;
 
 public class Applications extends Application {

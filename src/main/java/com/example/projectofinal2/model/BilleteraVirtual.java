@@ -1,4 +1,6 @@
-package com.example.projectofinal2.Clases.model;
+package com.example.projectofinal2.model;
+
+import lombok.Getter;
 
 import java.util.ArrayList;
 
@@ -9,8 +11,11 @@ public class BilleteraVirtual {
     private static String idBilletera;
     private static String nombreBilletera;
     private static double Dolares;
+    @Getter
     private static ArrayList<CuentaBanco> cuentasBanco;
+    @Getter
     static ArrayList<DTOTransaccion> DTOtransacciones;
+    @Getter
     private static ArrayList<Usuario> usuarios;
 
     public BilleteraVirtual(String idBilletera, String nombreBilletera, double Dolares, ArrayList<Usuario> usuarios) {
@@ -18,10 +23,9 @@ public class BilleteraVirtual {
         BilleteraVirtual.nombreBilletera = nombreBilletera;
         BilleteraVirtual.Dolares = Dolares;
         cuentasBanco = new ArrayList<>();
-        instance = getInstance();
         DTOtransacciones = new ArrayList<>();
         BilleteraVirtual.instance = getInstance();
-        BilleteraVirtual.usuarios = usuarios;
+        BilleteraVirtual.usuarios = new ArrayList<Usuario>();
     }
 
     public String getIdBilletera() {
@@ -48,16 +52,12 @@ public class BilleteraVirtual {
         BilleteraVirtual.Dolares = dolares;
     }
 
-    public static ArrayList<CuentaBanco> getCuentasBanco() {
-        return cuentasBanco;
-    }
-
     public void setCuentaBanco(ArrayList<CuentaBanco> cuentasBanco) {
         BilleteraVirtual.cuentasBanco = cuentasBanco;
     }
     public static BilleteraVirtual getInstance(){
         if (instance == null) {
-            instance = new BilleteraVirtual("1", "Billetera", 0, new ArrayList<>());
+            instance = new BilleteraVirtual("1", "Billetera", 0, new ArrayList<Usuario>());
         }
         return instance;
     }
@@ -66,16 +66,10 @@ public class BilleteraVirtual {
         BilleteraVirtual.cuentasBanco = cuentasBanco;
     }
 
-    public static ArrayList<DTOTransaccion> getDTOtransacciones() {
-        return DTOtransacciones;
-    }
-
     public static void setDTOtransacciones(ArrayList<DTOTransaccion> DTOtransacciones) {
         BilleteraVirtual.DTOtransacciones = DTOtransacciones;
     }
-    public static ArrayList<Usuario> getUsuarios() {
-        return usuarios;
-    }
+
     public static void setUsuarios(ArrayList<Usuario> usuarios) {
         BilleteraVirtual.usuarios = usuarios;
     }

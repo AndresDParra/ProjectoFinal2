@@ -1,4 +1,4 @@
-package com.example.projectofinal2.Clases.model;
+package com.example.projectofinal2.model;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -10,8 +10,8 @@ import java.lang.reflect.Type;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-import static com.example.projectofinal2.Clases.model.BilleteraVirtual.DTOtransacciones;
-import static com.example.projectofinal2.Clases.model.CuentaBanco.transacciones;
+import static com.example.projectofinal2.model.BilleteraVirtual.DTOtransacciones;
+import static com.example.projectofinal2.model.CuentaBanco.transacciones;
 
 public class GestorTransaccion {
 

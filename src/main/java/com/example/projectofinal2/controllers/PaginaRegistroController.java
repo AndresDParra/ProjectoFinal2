@@ -1,7 +1,8 @@
-package com.example.projectofinal2.Controllers;
+package com.example.projectofinal2.controllers;
 
-import com.example.projectofinal2.Clases.model.GSON;
-import com.example.projectofinal2.Clases.model.GestorCuentaBanco;
+import com.example.projectofinal2.model.GSON;
+import com.example.projectofinal2.model.GestorCuentaBanco;
+import com.example.projectofinal2.model.MongoDBFacade;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -24,6 +25,7 @@ public class PaginaRegistroController {
         EspacioID = espacioID;
         EspacioCorreo = espacioCorreo;
     }
+
     public TextField getEspacioIDCuenta() {
         return EspacioIDCuenta;
     }
@@ -76,12 +78,15 @@ public class PaginaRegistroController {
     }
 
     public void Guardar(ActionEvent actionEvent) {
-        GestorCuentaBanco.crearCuentaBanco(EspacioID.getText(), 1000, EspacioPIN.getText(), EspacioNombreUsuario.getText(), EspacioIDCuenta.getText(), EspacioCorreo.getText(), EspacioIDCuenta.getText());
+        var cuentaBanco = GestorCuentaBanco.crearCuentaBanco(EspacioID.getText(), 1000, EspacioPIN.getText(), EspacioNombreUsuario.getText(), EspacioIDCuenta.getText(), EspacioCorreo.getText(), EspacioIDCuenta.getText());
         EspacioIDCuenta.clear();
         EspacioID.clear();
         EspacioPIN.clear();
         EspacioNombreUsuario.clear();
         EspacioCorreo.clear();
         GSON.saveCuentaDeBancoToFile("/Users/andresdavidparra/Documents/Folder para cosas importantes/TrabajoMiercolesYulbrainer/carpetaJson/RegistroCuentaBanco.json");
+
+
     }
+
 }

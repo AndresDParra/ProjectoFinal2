@@ -1,4 +1,6 @@
-package com.example.projectofinal2.Clases.model;
+package com.example.projectofinal2.model;
+
+import lombok.Getter;
 
 import java.util.ArrayList;
 
@@ -8,7 +10,9 @@ public class CuentaBanco {
     private double saldo;
     private static Usuario usuario;
     private String contrasena;
+    @Getter
     static ArrayList<Transaccion> transacciones;
+    @Getter
     private static ArrayList<DTOTransaccion> DTOtransacciones;
 
     public CuentaBanco(String idCuenta, double saldo, Usuario usuario, String contrasena) {
@@ -45,16 +49,8 @@ public class CuentaBanco {
         this.saldo = saldo;
     }
 
-    public static ArrayList<Transaccion> getTransacciones() {
-        return transacciones;
-    }
-
     public void setTransacciones(ArrayList<Transaccion> transacciones) {
         CuentaBanco.transacciones = transacciones;
-    }
-
-    public static ArrayList<DTOTransaccion> getDTOtransacciones() {
-        return DTOtransacciones;
     }
 
     public static void setDTOtransacciones(ArrayList<DTOTransaccion> DTOtransacciones) {
