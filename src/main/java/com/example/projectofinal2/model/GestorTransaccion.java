@@ -15,14 +15,32 @@ import static com.example.projectofinal2.model.CuentaBanco.transacciones;
 
 public class GestorTransaccion {
 
-    public static void crearTransaccion(double monto, LocalDateTime fecha, String descripcion, CategoriaTransaccion categoriaTransaccion, TipoTransaccion tipoTransaccion) {
+    private static final ArrayList<ObservadorTransaccion> observadores = new ArrayList<>();
 
+    private EstrategiaComision estrategia;
+
+
+    public static void agregarObservador(ObservadorTransaccion obs) {
+        observadores.add(obs);
+    }
+
+    private static void notificarObservadores(DTOTransaccion dto) {
+        for (ObservadorTransaccion obs : observadores) {
+            obs.actualizar(dto);
+        }
+    }
+
+    public static void crearTransaccion(double monto, LocalDateTime fecha, String descripcion, CategoriaTransaccion categoriaTransaccion, TipoTransaccion tipoTransaccion) {
         Transaccion transaccion = new Transaccion(fecha, monto, descripcion, categoriaTransaccion, tipoTransaccion);
         CuentaBanco.getTransacciones().add(transaccion);
-        DTOTransaccion dtoTransaccion = new DTOTransaccion(monto, fecha.toString(), descripcion, categoriaTransaccion.toString(), tipoTransaccion.toString());
-        CuentaBanco.getDTOtransacciones().add(dtoTransaccion);
 
+        DTOTransaccion dto = new DTOTransaccion(monto, fecha.toString(), descripcion, categoriaTransaccion.toString(), tipoTransaccion.toString());
+        CuentaBanco.getDTOtransacciones().add(dto);
+
+        notificarObservadores(dto);
     }
+
+
 
     public static void saveTransaccionesToFile(String filePath) {
         Gson gson = new Gson();
@@ -31,6 +49,14 @@ public class GestorTransaccion {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void setEstrategia(EstrategiaComision estrategia) {
+        this.estrategia = estrategia;
+    }
+
+    public double calcular(double monto) {
+        return estrategia.calcularComision(monto);
     }
 
     public static void loadTransaccionesFromFile(String filePath) {
