@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="407.0" prefWidth="887.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectofinal2.controllers.CrudController">
+<BorderPane prefHeight="407.0" prefWidth="887.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectofinal2.controllers.CrudController">
     <top>
-        <TabPane>
+        <TabPane prefHeight="710.0" prefWidth="887.0">
             <tabs>
                 <Tab text="Usuarios">
                     <content>
@@ -50,21 +58,22 @@
                 </Tab>
                 <Tab text="Cuentas Bancarias">
                     <content>
-                        <VBox spacing="10">
+                        <VBox prefHeight="655.0" prefWidth="887.0" spacing="10">
                             <children>
                                 <TextField fx:id="idCuenta" promptText="ID Cuenta" />
                                 <TextField fx:id="numeroCuenta" promptText="Número Cuenta" />
-                                <TextField fx:id="nombreBanco" promptText="Banco" />
-                                <TextField fx:id="saldoCuenta" promptText="Saldo" />
+                                <TextField fx:id="nombreUsuarioCuenta" promptText="Nombre Usuario" />
+                                <TextField fx:id="TeléfonoCuenta" promptText="Teléfono" />
                                 <ComboBox fx:id="tipoCuenta" />
                                 <Button onAction="#agregarCuenta" text="Agregar Cuenta" />
-                                <TableView fx:id="tablaCuentas">
+                                <TableView fx:id="tablaCuentas" prefHeight="450.0" prefWidth="887.0">
                                     <columns>
                                         <TableColumn fx:id="colIdCuenta" text="ID Cuenta" />
                                         <TableColumn fx:id="colNumeroCuenta" text="Número Cuenta" />
                                         <TableColumn fx:id="colBancoCuenta" text="Banco" />
                                         <TableColumn fx:id="colSaldoCuenta" text="Saldo" />
                                         <TableColumn fx:id="colTipoCuenta" text="Tipo" />
+                              <TableColumn fx:id="ColumnUsuario" prefWidth="75.0" text="Usuario" />
                                     </columns>
                                 </TableView>
                             </children>

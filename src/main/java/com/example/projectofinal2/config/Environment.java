@@ -13,12 +13,12 @@ public enum Environment {
     public MongoDatabase env_value() {
        Dotenv dotenv =Dotenv.load();
         String mongoString = dotenv.get("MONGO_STRING");
-        MongoClient mongoClients = null;
         if (mongoString == null) {
             throw new RuntimeException("MONGO_STRING is not set in .env or environment variables");
         }
+        MongoClient mongoClients;
         try {
-            mongoClients = MongoClients.create(System.getenv("MONGO_STRING"));
+            mongoClients = MongoClients.create(mongoString);
         } catch (Exception e) {
             throw new RuntimeException("Error connecting to MongoDB: " + e.getMessage());
         }

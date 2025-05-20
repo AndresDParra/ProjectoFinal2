@@ -1,10 +1,17 @@
 package com.example.projectofinal2.controllers;
 
+import com.example.projectofinal2.Applications;
 import com.example.projectofinal2.model.BilleteraVirtual;
 import com.example.projectofinal2.model.CuentaBanco;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class PaginaVerificacionPINController {
     public Button Button1;
@@ -179,19 +186,31 @@ public class PaginaVerificacionPINController {
         appendDigit("0");
     }
 
-    public void Submit(ActionEvent actionEvent) {
+    public void Submit(ActionEvent actionEvent) throws IOException {
         String pin = PinArea.getText();
         if (pin.length() == 4) {
             for (CuentaBanco cuentaBanco : BilleteraVirtual.getCuentasBanco()) {
                 if (pin.equals(cuentaBanco.getContrasena())) {
-                    System.out.println("PIN correcto.");
+                    FXMLLoader fxmlLoader = new FXMLLoader(Applications.class.getResource("UsuarioDashBoard.fxml"));
+                    Parent root = fxmlLoader.load();
+                    Stage stage = new Stage();
+                    Scene scene = new Scene(root, 480, 430);
+                    stage.setScene(scene);
+                    stage.setTitle("Welcome to Venequi");
+                    stage.show();
 
+                    PinArea.clear();
                     return;
+                }
+                else {
+                    System.out.println("PIN incorrecto.");
+                    PinArea.clear();
                 }
             }
         } else {
             System.out.println("El PIN debe tener 4 dígitos.");
+            PinArea.clear();
         }
-        PinArea.clear();
+
     }
 }

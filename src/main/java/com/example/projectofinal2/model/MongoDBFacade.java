@@ -1,6 +1,8 @@
 package com.example.projectofinal2.model;
 
 import com.example.projectofinal2.config.Environment;
+import com.mongodb.MongoClientException;
+import com.mongodb.MongoException;
 import com.mongodb.client.*;
 import javafx.scene.control.Alert;
 import org.bson.Document;
@@ -21,8 +23,9 @@ public class MongoDBFacade {
 
     public static void insertCuentaBanco(CuentaBanco cuentaBanco) {
         MongoCollection<Document> collection = db.getCollection("CuentasBanco");
-        Document document = new Document("IDcuenta", cuentaBanco.getIdCuenta() );
+        Document document = new Document("IDcuenta", cuentaBanco.getIdCuenta());
         document.append("saldo", cuentaBanco.getSaldo());
+        document.append("nombreBanco", "Venequi");
         Usuario usuario = cuentaBanco.getUsuario();
         Document usuarioDoc = new Document("nombre", usuario.getNombre())
                 .append("correo", usuario.getCorreo())
@@ -46,25 +49,58 @@ public class MongoDBFacade {
         alert.showAndWait();
     }
 
-    public static void AccessMongoDB() {
-        MongoCollection<Document> collection = MongoDBFacade.db.getCollection("CuentasBanco");
-        FindIterable<Document> documents = collection.find();
+    public static void AccessMongoDBCuentasBanco() {
+        try {
+            MongoCollection<Document> collection = MongoDBFacade.db.getCollection("CuentasBanco");
+            FindIterable<Document> documents = collection.find();
+            BilleteraVirtual.getCuentasBanco().clear();
+            for (Document doc : documents) {
+                Document usuarioDoc = doc.get("usuario", Document.class);
+                Usuario usuario = new Usuario(
+                        usuarioDoc.getString("nombre"),
+                        usuarioDoc.getString("id"),
+                        usuarioDoc.getString("correo"),
+                        usuarioDoc.getString("telefono"));
+                CuentaBanco cuentaBanco = new CuentaBanco(
+                        doc.getString("IDcuenta"),
+                        doc.getDouble("saldo"),
+                        usuario,
+                        usuario.getTelefono());
+                cuentaBanco.setContrasena(doc.getString("contrasena"));
 
-        for (Document doc : documents) {
-            CuentaBanco cuentaBanco = new CuentaBanco(
-                    doc.getString("idCuenta"),
-                    doc.getDouble("saldo"),
-                    doc.get("usuario", Usuario.class),
-                    doc.getString("telefono"));
-
-            //BilleteraVirtual.getCuentasBanco().add()
+                BilleteraVirtual.getCuentasBanco().add(cuentaBanco);
+            }
+        } catch (MongoException e) {
+            System.out.println("No se pudo conectar a la base de datos");
+            showConnectionError();
         }
-
-        // This might be needed only on error, consider moving to a catch block
-        showConnectionError();
     }
 
     public static void EditarDatosMongo() {
-        // Implementation needed here
+
+
+
     }
+    public static void AccessMongoDBUsuario() {
+        MongoCollection<Document> collection = MongoDBFacade.db.getCollection("usuario");
+        FindIterable<Document> documents = collection.find();
+
+        try {
+            for (Document doc : documents) {
+                Usuario usuario = new Usuario(
+                        doc.getString("nombre"),
+                        doc.getString("id"),
+                        doc.getString("correo"),
+                        doc.getString("telefono"));
+
+                BilleteraVirtual.getUsuarios().add(usuario);
+            }
+        }catch (MongoException e) {
+
+            System.out.println("No se pudo conectar a la base de datos");
+            showConnectionError();
+        }
+
+    }
+
 }

@@ -1,8 +1,10 @@
 package com.example.projectofinal2.model;
 
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class BilleteraVirtual {
@@ -11,12 +13,9 @@ public class BilleteraVirtual {
     private static String idBilletera;
     private static String nombreBilletera;
     private static double Dolares;
-    @Getter
-    private static ArrayList<CuentaBanco> cuentasBanco;
-    @Getter
+    private static ArrayList<CuentaBanco> cuentasBanco = new ArrayList<>();
     static ArrayList<DTOTransaccion> DTOtransacciones;
-    @Getter
-    private static ArrayList<Usuario> usuarios;
+    private static ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
 
     public BilleteraVirtual(String idBilletera, String nombreBilletera, double Dolares, ArrayList<Usuario> usuarios) {
         BilleteraVirtual.idBilletera = idBilletera;
@@ -28,7 +27,11 @@ public class BilleteraVirtual {
         BilleteraVirtual.usuarios = new ArrayList<Usuario>();
     }
 
-    public String getIdBilletera() {
+    public static void setInstance(BilleteraVirtual instance) {
+        BilleteraVirtual.instance = instance;
+    }
+
+    public static String getIdBilletera() {
         return idBilletera;
     }
 
@@ -36,7 +39,7 @@ public class BilleteraVirtual {
         BilleteraVirtual.idBilletera = idBilletera;
     }
 
-    public String getNombreBilletera() {
+    public static String getNombreBilletera() {
         return nombreBilletera;
     }
 
@@ -44,37 +47,44 @@ public class BilleteraVirtual {
         BilleteraVirtual.nombreBilletera = nombreBilletera;
     }
 
-    public double getDolares() {
+    public static double getDolares() {
         return Dolares;
     }
 
     public static void setDolares(double dolares) {
-        BilleteraVirtual.Dolares = dolares;
+        Dolares = dolares;
     }
 
-    public void setCuentaBanco(ArrayList<CuentaBanco> cuentasBanco) {
-        BilleteraVirtual.cuentasBanco = cuentasBanco;
-    }
-    public static BilleteraVirtual getInstance(){
-        if (instance == null) {
-            instance = new BilleteraVirtual("1", "Billetera", 0, new ArrayList<Usuario>());
-        }
-        return instance;
+    public static ArrayList<CuentaBanco> getCuentasBanco() {
+        return cuentasBanco;
     }
 
     public static void setCuentasBanco(ArrayList<CuentaBanco> cuentasBanco) {
         BilleteraVirtual.cuentasBanco = cuentasBanco;
     }
 
+    public static ArrayList<DTOTransaccion> getDTOtransacciones() {
+        return DTOtransacciones;
+    }
+
     public static void setDTOtransacciones(ArrayList<DTOTransaccion> DTOtransacciones) {
         BilleteraVirtual.DTOtransacciones = DTOtransacciones;
+    }
+
+    public static ArrayList<Usuario> getUsuarios() {
+        return usuarios;
     }
 
     public static void setUsuarios(ArrayList<Usuario> usuarios) {
         BilleteraVirtual.usuarios = usuarios;
     }
 
-
+    public static BilleteraVirtual getInstance(){
+        if (instance == null) {
+            instance = new BilleteraVirtual("1", "Billetera", 0, new ArrayList<Usuario>());
+        }
+        return instance;
+    }
 
 
     public static void InitializeAll(){

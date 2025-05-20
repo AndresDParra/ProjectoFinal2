@@ -31,10 +31,10 @@ public class GestorTransaccion {
     }
 
     public static void crearTransaccion(double monto, LocalDateTime fecha, String descripcion, CategoriaTransaccion categoriaTransaccion, TipoTransaccion tipoTransaccion) {
-        Transaccion transaccion = new Transaccion(fecha, monto, descripcion, categoriaTransaccion, tipoTransaccion);
+        Transaccion transaccion = new Transaccion(fecha, monto, descripcion, categoriaTransaccion, tipoTransaccion, null, null);
         CuentaBanco.getTransacciones().add(transaccion);
 
-        DTOTransaccion dto = new DTOTransaccion(monto, fecha.toString(), descripcion, categoriaTransaccion.toString(), tipoTransaccion.toString());
+        DTOTransaccion dto = new DTOTransaccion(monto, fecha.toString(), descripcion, categoriaTransaccion.toString(), tipoTransaccion.toString(), null, null);
         CuentaBanco.getDTOtransacciones().add(dto);
 
         notificarObservadores(dto);

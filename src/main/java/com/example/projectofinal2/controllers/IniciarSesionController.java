@@ -12,75 +12,71 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.io.IOException;
 
+@Getter
+@Setter
 public class IniciarSesionController {
     public TextField EspacioInicioSesion;
     public Text TextoParaRegistro;
     public Button ButtonAdministrador;
+    public Text IniciarSesionButton;
+    public Button ButtonIniciarSesion;
 
-    public IniciarSesionController(TextField espacioInicioSesion, Text textoParaRegistro) {
+    public IniciarSesionController(TextField espacioInicioSesion, Text textoParaRegistro, Button buttonAdministrador, Text iniciarSesionButton, Button buttonIniciarSesion) {
         EspacioInicioSesion = espacioInicioSesion;
         TextoParaRegistro = textoParaRegistro;
+        ButtonAdministrador = buttonAdministrador;
+        IniciarSesionButton = iniciarSesionButton;
+        ButtonIniciarSesion = buttonIniciarSesion;
     }
-
 
     public IniciarSesionController() {
-    }
-
-    public TextField getEspacioInicioSesion() {
-        return EspacioInicioSesion;
-    }
-
-    public void setEspacioInicioSesion(TextField espacioInicioSesion) {
-        EspacioInicioSesion = espacioInicioSesion;
-    }
-
-    public Text getTextoParaRegistro() {
-        return TextoParaRegistro;
-    }
-
-    public void setTextoParaRegistro(Text textoParaRegistro) {
-        TextoParaRegistro = textoParaRegistro;
     }
 
     public void IniciarRegistro(MouseEvent mouseEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Applications.class.getResource("PaginaRegistro.fxml"));
         Stage stage = new Stage();
-        Scene scene = new Scene(fxmlLoader.load(), 480, 480);
+        Scene scene = new Scene(fxmlLoader.load(), 480, 400);
         stage.setTitle("Welcome to Venequi");
         stage.setScene(scene);
         stage.show();
 
     }
 
-    public void IniciarSesion(MouseEvent mouseEvent) throws IOException {
-        String NumeroDeTelefono = EspacioInicioSesion.getText();
+    public void IniciarSesion(ActionEvent mouseEvent) throws IOException {
+        System.out.println("CuentasBanco: " + BilleteraVirtual.getCuentasBanco());
+        String numeroDeTelefono = EspacioInicioSesion.getText();
+        if (!numeroDeTelefono.matches("[0-9]+")) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("numero de telefono incorrecto");
+            alert.setHeaderText("Error de inicio de sesión");
+            alert.setContentText("Introduce un numero de telefono correcto");
+            alert.showAndWait();
+            return;
+        }
+        boolean found = false;
         for (CuentaBanco cuentaBanco : BilleteraVirtual.getCuentasBanco()) {
-            var existeEnCuentaRegistrada = cuentaBanco.getUsuario().getTelefono().equals(NumeroDeTelefono);
-            if (existeEnCuentaRegistrada) {
-                FXMLLoader fxmlLoader = new FXMLLoader(Applications.class.getResource("PaginaSeleccionProductoODispositivo.fxml"));
+            if (cuentaBanco.getUsuario().getTelefono().equals(numeroDeTelefono)) {
+                FXMLLoader fxmlLoader = new FXMLLoader(Applications.class.getResource("PaginaVerificacionPIN.fxml"));
                 Stage stage = new Stage();
-                Scene scene = new Scene(fxmlLoader.load(), 480, 480);
+                Scene scene = new Scene(fxmlLoader.load(), 480, 430);
                 stage.setTitle("Welcome to Venequi");
                 stage.setScene(scene);
                 stage.show();
-            } else if (cuentaBanco.getUsuario().getTelefono().isEmpty()) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setHeaderText("Error de inicio de sesión");
-                alert.setContentText("Por favor introduce un número de telefono valido");
-                alert.showAndWait();
-
-            } else if (!NumeroDeTelefono.matches("[0-9]+")) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setHeaderText("Error de inicio de sesión");
-                alert.setContentText("Por favor introduce un número de telefono valido");
-                alert.showAndWait();
-
+                found = true;
+                break;
             }
+        }
+        if (!found) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Error de inicio de sesión");
+            alert.setContentText("No se encontró una cuenta con ese número de teléfono");
+            alert.showAndWait();
         }
 
     }
