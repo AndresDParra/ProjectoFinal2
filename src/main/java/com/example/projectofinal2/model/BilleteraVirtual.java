@@ -16,6 +16,7 @@ public class BilleteraVirtual {
     private static ArrayList<CuentaBanco> cuentasBanco = new ArrayList<>();
     static ArrayList<DTOTransaccion> DTOtransacciones;
     private static ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+    private static ArrayList<Presupuesto> presupuestos = new ArrayList<>();
 
     public BilleteraVirtual(String idBilletera, String nombreBilletera, double Dolares, ArrayList<Usuario> usuarios) {
         BilleteraVirtual.idBilletera = idBilletera;
@@ -25,6 +26,7 @@ public class BilleteraVirtual {
         DTOtransacciones = new ArrayList<>();
         BilleteraVirtual.instance = getInstance();
         BilleteraVirtual.usuarios = new ArrayList<Usuario>();
+        BilleteraVirtual.presupuestos = new ArrayList<Presupuesto>();
     }
 
     public static void setInstance(BilleteraVirtual instance) {
@@ -77,6 +79,14 @@ public class BilleteraVirtual {
 
     public static void setUsuarios(ArrayList<Usuario> usuarios) {
         BilleteraVirtual.usuarios = usuarios;
+    }
+
+    public static ArrayList<Presupuesto> getPresupuestos() {
+        return presupuestos;
+    }
+
+    public static void setPresupuestos(ArrayList<Presupuesto> presupuestos) {
+        BilleteraVirtual.presupuestos = presupuestos;
     }
 
     public static BilleteraVirtual getInstance(){

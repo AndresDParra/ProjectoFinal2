@@ -5,6 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import lombok.Getter;
@@ -16,11 +17,10 @@ import java.util.Optional;
 
 @Getter @Setter
 public class UsuarioTransaccionesController {
-    public ListView<Transaccion> transaccionesListView;
-    public Button ButtonAgregarTransaccion;
-    public Button ButtonEditarTransaccion;
-    public Button ButtonEliminarTransaccion;
+    @FXML private ListView<Transaccion> transaccionesListView;
+    @FXML private Button ButtonAgregarTransaccion;
     private Transaccion transaccionSeleccionada;
+
 
     public UsuarioTransaccionesController() {
     }
@@ -53,11 +53,20 @@ public class UsuarioTransaccionesController {
 
     private void cargarTransacciones() {
         if (AccesoUsuario.getCuenta_banco() != null) {
-            transaccionesListView.setItems(
-                    FXCollections.observableArrayList(
-                            AccesoUsuario.getCuenta_banco().getTransacciones()
-                    )
+            Transaccion transaccion = new Transaccion(
+                    LocalDateTime.now(),
+                    0.0,
+                    "Transacción de prueba",
+                    CategoriaTransaccion.ALIMENTOS,
+                    TipoTransaccion.DEPOSITO,
+                    AccesoUsuario.getCuenta_banco(),
+                    new CuentaBanco("2344", 1234, new Usuario("Julian", "123345656", "@2301", "3125439088"), "0987")
             );
+            AccesoUsuario.getCuenta_banco().getTransacciones().add(transaccion);
+            ObservableList<Transaccion> lista = AccesoUsuario.getCuenta_banco().getTransacciones().stream()
+                    .collect(FXCollections::observableArrayList, ObservableList::add, ObservableList::addAll);
+            transaccionesListView.setItems(
+                    lista);
         }
     }
 
@@ -71,8 +80,7 @@ public class UsuarioTransaccionesController {
         transaccionesListView.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> {
                     transaccionSeleccionada = newValue;
-                    ButtonEditarTransaccion.setDisable(newValue == null);
-                    ButtonEliminarTransaccion.setDisable(newValue == null);
+
                 }
         );
     }

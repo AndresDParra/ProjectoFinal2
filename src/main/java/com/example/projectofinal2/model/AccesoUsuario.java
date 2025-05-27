@@ -1,7 +1,12 @@
 package com.example.projectofinal2.model;
 
+import eu.hansolo.toolbox.observables.ObservableList;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.ArrayList;
+
+import static com.example.projectofinal2.model.CuentaBanco.transacciones;
 
 public class AccesoUsuario {
 
@@ -30,5 +35,9 @@ public class AccesoUsuario {
 
     public static void setInstance(AccesoUsuario instance) {
         AccesoUsuario.instance = instance;
+    }
+
+    public ArrayList<Transaccion> getTransacciones() {
+        return transacciones; // Make sure 'transacciones' is an ObservableList
     }
 }

@@ -72,8 +72,11 @@ public class PaginaUsuarioDashBoardController {
         FXMLLoader fxmlLoader = new FXMLLoader(Applications.class.getResource("UsuarioTransacciones.fxml"));
         Stage stage = new Stage();
         stage.setTitle("Transacciones");
-        stage.setScene(new Scene(fxmlLoader.load(), 600, 400));
+        stage.setScene(new Scene(fxmlLoader.load(), 800, 750));
         stage.show();
+
+        UsuarioTransaccionesController usuarioTransaccionesController = fxmlLoader.getController();
+        usuarioTransaccionesController.initialize();
     }
 
     public void mostrarPresupuestos(ActionEvent actionEvent) throws IOException {

@@ -102,5 +102,18 @@ public class MongoDBFacade {
         }
 
     }
+    public static void insertTransaccion(Transaccion transaccion) {
+        MongoCollection<Document> collection = db.getCollection("transacciones");
+        Document document = new Document("fecha", transaccion.fecha().toString());
+        document.append("monto", transaccion.monto());
+        document.append("descripcion", transaccion.descripcion());
+        document.append("categoria", transaccion.categoria().toString());
+        document.append("tipo", transaccion.tipo().toString());
+        document.append("cuentaOrigen", transaccion.cuentaOrigen().getIdCuenta());
+        if (transaccion.cuentaDestino() != null) {
+            document.append("cuentaDestino", transaccion.cuentaDestino().getIdCuenta());
+        }
+        collection.insertOne(document);
+    }
 
 }

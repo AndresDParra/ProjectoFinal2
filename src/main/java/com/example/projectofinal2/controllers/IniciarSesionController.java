@@ -1,6 +1,7 @@
 package com.example.projectofinal2.controllers;
 
 import com.example.projectofinal2.Applications;
+import com.example.projectofinal2.model.AccesoUsuario;
 import com.example.projectofinal2.model.BilleteraVirtual;
 import com.example.projectofinal2.model.CuentaBanco;
 import javafx.event.ActionEvent;
@@ -61,6 +62,7 @@ public class IniciarSesionController {
         boolean found = false;
         for (CuentaBanco cuentaBanco : BilleteraVirtual.getCuentasBanco()) {
             if (cuentaBanco.getUsuario().getTelefono().equals(numeroDeTelefono)) {
+                AccesoUsuario.setCuenta_banco(cuentaBanco);
                 FXMLLoader fxmlLoader = new FXMLLoader(Applications.class.getResource("PaginaVerificacionPIN.fxml"));
                 Stage stage = new Stage();
                 Scene scene = new Scene(fxmlLoader.load(), 480, 430);

@@ -49,6 +49,10 @@ public class CuentaBanco {
         this.saldo = saldo;
     }
 
+    public static ArrayList<Transaccion> getTransacciones(){
+        return transacciones;
+    }
+
     public void setTransacciones(ArrayList<Transaccion> transacciones) {
         CuentaBanco.transacciones = transacciones;
     }
