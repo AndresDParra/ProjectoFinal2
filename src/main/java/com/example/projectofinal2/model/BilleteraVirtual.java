@@ -86,7 +86,20 @@ public class BilleteraVirtual {
         return instance;
     }
 
+    public CuentaBanco buscarCuenta(String id) {
+        if (id == null || id.trim().isEmpty()) {
+            throw new IllegalArgumentException("El ID de cuenta no puede ser nulo o vacío");
+        }
 
+        if (cuentasBanco != null) {
+            for (CuentaBanco cuenta : cuentasBanco) {
+                if (cuenta != null && id.equals(cuenta.getIdCuenta())) {
+                    return cuenta;
+                }
+            }
+        }
+        return null;
+    }
     public static void InitializeAll(){
         Configurador configurador = Configurador.getInstance();
         configurador.inicializarBilletera();
