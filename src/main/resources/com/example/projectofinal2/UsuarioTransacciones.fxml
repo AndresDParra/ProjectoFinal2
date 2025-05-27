@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.geometry.Pos?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600" prefWidth="800" style="-fx-background-color: white;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="com.example.projectofinal2.controllers.TransaccionesController">
+<AnchorPane prefHeight="600" prefWidth="800" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectofinal2.controllers.UsuarioTransaccionesController">
 
     <children>
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="A020F0" height="97.0" stroke="A020F0" strokeType="INSIDE" width="888.0" />
@@ -23,11 +23,8 @@
         </ListView>
 
 
-        <Button layoutX="300.0" layoutY="420.0" onAction="#agregarTransaccion" prefWidth="200.0" style="-fx-background-color: A020F0; -fx-text-fill: white;" text="Agregar Transacción" />
+        <Button fx:id="ButtonAgregarTransaccion" layoutX="300.0" layoutY="420.0" onAction="#agregarTransaccion" prefWidth="200.0" style="-fx-background-color: A020F0; -fx-text-fill: white;" text="Agregar Transacción" />
 
-        <Button layoutX="550.0" layoutY="420.0" onAction="#editarTransaccion" prefWidth="200.0" style="-fx-background-color: A020F0; -fx-text-fill: white;" text="Editar Transacción" />
-
-        <Button layoutX="550.0" layoutY="460.0" onAction="#eliminarTransaccion" prefWidth="200.0" style="-fx-background-color: A020F0; -fx-text-fill: white;" text="Eliminar Transacción" />
 
 
     </children>
