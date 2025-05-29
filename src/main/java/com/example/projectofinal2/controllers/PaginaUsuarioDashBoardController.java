@@ -85,6 +85,9 @@ public class PaginaUsuarioDashBoardController {
         stage.setTitle("Transacciones");
         stage.setScene(new Scene(fxmlLoader.load(), 600, 400));
         stage.show();
+
+        PaginaPresupuestoController usuarioPresupuestoController = fxmlLoader.getController();
+        usuarioPresupuestoController.Initialize();
     }
 
     public void cerrarSesion(ActionEvent actionEvent) {

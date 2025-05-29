@@ -1,10 +1,7 @@
 package com.example.projectofinal2.model;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedList;
 
 
 public class BilleteraVirtual {
@@ -14,7 +11,7 @@ public class BilleteraVirtual {
     private static String nombreBilletera;
     private static double Dolares;
     private static ArrayList<CuentaBanco> cuentasBanco = new ArrayList<>();
-    static ArrayList<DTOTransaccion> DTOtransacciones;
+    static ArrayList<Transaccion> transacciones;
     private static ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
     private static ArrayList<Presupuesto> presupuestos = new ArrayList<>();
 
@@ -23,8 +20,7 @@ public class BilleteraVirtual {
         BilleteraVirtual.nombreBilletera = nombreBilletera;
         BilleteraVirtual.Dolares = Dolares;
         cuentasBanco = new ArrayList<>();
-        DTOtransacciones = new ArrayList<>();
-        BilleteraVirtual.instance = getInstance();
+        transacciones = new ArrayList<>();
         BilleteraVirtual.usuarios = new ArrayList<Usuario>();
         BilleteraVirtual.presupuestos = new ArrayList<Presupuesto>();
     }
@@ -65,12 +61,12 @@ public class BilleteraVirtual {
         BilleteraVirtual.cuentasBanco = cuentasBanco;
     }
 
-    public static ArrayList<DTOTransaccion> getDTOtransacciones() {
-        return DTOtransacciones;
+    public static ArrayList<Transaccion> getTransacciones() {
+        return transacciones;
     }
 
-    public static void setDTOtransacciones(ArrayList<DTOTransaccion> DTOtransacciones) {
-        BilleteraVirtual.DTOtransacciones = DTOtransacciones;
+    public static void setTransacciones(ArrayList<Transaccion> transacciones) {
+        BilleteraVirtual.transacciones = transacciones;
     }
 
     public static ArrayList<Usuario> getUsuarios() {
@@ -113,9 +109,16 @@ public class BilleteraVirtual {
     public static void InitializeAll(){
         Configurador configurador = Configurador.getInstance();
         configurador.inicializarBilletera();
-        DTOtransacciones = new ArrayList<>();
+        transacciones = new ArrayList<>();
         cuentasBanco = new ArrayList<>();
 
+    }
+    public LinkedList<Presupuesto> usuarioPresupuestos(Usuario usuario) {
+        LinkedList<Presupuesto> presupuestos = new LinkedList<>();
+        for (Presupuesto presupuesto : presupuestos) {
+            presupuestos.add(presupuesto);
+        }
+        return presupuestos;
     }
 
 }

@@ -1,11 +1,12 @@
 package com.example.projectofinal2.model;
 
 import com.example.projectofinal2.config.Environment;
-import com.mongodb.MongoClientException;
 import com.mongodb.MongoException;
 import com.mongodb.client.*;
 import javafx.scene.control.Alert;
 import org.bson.Document;
+
+import java.time.LocalDateTime;
 
 public class MongoDBFacade {
 
@@ -79,8 +80,8 @@ public class MongoDBFacade {
     public static void EditarDatosMongo() {
 
 
-
     }
+
     public static void AccessMongoDBUsuario() {
         MongoCollection<Document> collection = MongoDBFacade.db.getCollection("usuario");
         FindIterable<Document> documents = collection.find();
@@ -95,13 +96,14 @@ public class MongoDBFacade {
 
                 BilleteraVirtual.getUsuarios().add(usuario);
             }
-        }catch (MongoException e) {
+        } catch (MongoException e) {
 
             System.out.println("No se pudo conectar a la base de datos");
             showConnectionError();
         }
 
     }
+
     public static void insertTransaccion(Transaccion transaccion) {
         MongoCollection<Document> collection = db.getCollection("transacciones");
         Document document = new Document("fecha", transaccion.fecha().toString());
@@ -116,4 +118,23 @@ public class MongoDBFacade {
         collection.insertOne(document);
     }
 
+    public static void AccessMongoDBTransacciones() {
+        MongoCollection<Document> collection = MongoDBFacade.db.getCollection("transacciones");
+        FindIterable<Document> documents = collection.find();
+        BilleteraVirtual.getTransacciones().clear();
+
+        for (Document doc : documents) {
+            Transaccion transaccion = new Transaccion(
+                    LocalDateTime.parse(doc.getString("fecha")),
+                    doc.getDouble("monto"),
+                    doc.getString("descripcion"),
+                    CategoriaTransaccion.valueOf(doc.getString("categoria")),
+                    TipoTransaccion.valueOf(doc.getString("tipo")),
+                    GestorCuentaBanco.getCuentaBancoById(doc.getString("cuentaOrigen")),
+                    doc.containsKey("cuentaDestino") ? GestorCuentaBanco.getCuentaBancoById(doc.getString("cuentaDestino")) : null);
+            BilleteraVirtual.getTransacciones().add(transaccion);
+
+
+        }
+    }
 }

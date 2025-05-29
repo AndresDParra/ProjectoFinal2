@@ -31,7 +31,7 @@ public class Configurador {
         BilleteraVirtual.setDolares(Integer.MAX_VALUE);
         BilleteraVirtual.setUsuarios(new ArrayList<Usuario>());
         BilleteraVirtual.setCuentasBanco(new ArrayList<CuentaBanco>());
-        BilleteraVirtual.setDTOtransacciones(new ArrayList<DTOTransaccion>());
+        BilleteraVirtual.setTransacciones(new ArrayList<Transaccion>());
     }
 
     // Reset to default values

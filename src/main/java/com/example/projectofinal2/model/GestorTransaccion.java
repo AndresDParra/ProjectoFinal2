@@ -10,9 +10,6 @@ import java.lang.reflect.Type;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-import static com.example.projectofinal2.model.BilleteraVirtual.DTOtransacciones;
-import static com.example.projectofinal2.model.CuentaBanco.transacciones;
-
 public class GestorTransaccion {
 
     private static final ArrayList<ObservadorTransaccion> observadores = new ArrayList<>();
@@ -34,22 +31,11 @@ public class GestorTransaccion {
         Transaccion transaccion = new Transaccion(fecha, monto, descripcion, categoriaTransaccion, tipoTransaccion, null, null);
         CuentaBanco.getTransacciones().add(transaccion);
 
-        DTOTransaccion dto = new DTOTransaccion(monto, fecha.toString(), descripcion, categoriaTransaccion.toString(), tipoTransaccion.toString(), null, null);
-        CuentaBanco.getDTOtransacciones().add(dto);
-
-        notificarObservadores(dto);
     }
 
 
 
-    public static void saveTransaccionesToFile(String filePath) {
-        Gson gson = new Gson();
-        try (FileWriter writer = new FileWriter(filePath)) {
-            gson.toJson(transacciones, writer);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+
 
     public void setEstrategia(EstrategiaComision estrategia) {
         this.estrategia = estrategia;
@@ -59,22 +45,6 @@ public class GestorTransaccion {
         return estrategia.calcularComision(monto);
     }
 
-    public static void loadTransaccionesFromFile(String filePath) {
-        Gson gson = new Gson();
-        try (FileReader reader = new FileReader(filePath)) {
-            Type listType = new TypeToken<ArrayList<DTOTransaccion>>() {}.getType();
-            transacciones = gson.fromJson(reader, listType);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    public static void saveDTOTransaccionesToFile(String filePath) {
-        Gson gson = new Gson();
-        try (FileWriter writer = new FileWriter(filePath)) {
-            gson.toJson(DTOtransacciones, writer);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+
 
 }

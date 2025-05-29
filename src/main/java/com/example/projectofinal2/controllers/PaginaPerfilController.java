@@ -1,5 +1,6 @@
 package com.example.projectofinal2.controllers;
 
+import com.example.projectofinal2.model.AccesoUsuario;
 import com.example.projectofinal2.model.BilleteraVirtual;
 import com.example.projectofinal2.model.CuentaBanco;
 import javafx.event.ActionEvent;
@@ -26,15 +27,9 @@ public class PaginaPerfilController {
 
     public void editarPerfil(ActionEvent actionEvent) {
 
-        IniciarSesionController iniciarSesionController = new IniciarSesionController();
-        String telefono = iniciarSesionController.EspacioInicioSesion.getText();
-        for (CuentaBanco cuentaBanco : BilleteraVirtual.getCuentasBanco()) {
-            if (cuentaBanco.getUsuario().getTelefono().equals(telefono)) {
-                labelNombre.setText(cuentaBanco.getUsuario().getNombre());
-                labelCorreo.setText(cuentaBanco.getUsuario().getCorreo());
-                labelTelefono.setText(cuentaBanco.getUsuario().getTelefono());
-            }
-        }
+        labelNombre.setText(AccesoUsuario.getCuenta_banco().getUsuario().getNombre());
+        labelCorreo.setText(AccesoUsuario.getCuenta_banco().getUsuario().getCorreo());
+        labelTelefono.setText(AccesoUsuario.getCuenta_banco().getUsuario().getTelefono());
 
     }
 }

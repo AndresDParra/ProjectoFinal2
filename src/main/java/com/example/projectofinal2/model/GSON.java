@@ -14,7 +14,7 @@ public class GSON {
         Gson gson = new Gson();
         try (FileReader reader = new FileReader(filePath)) {
             Type listType = new TypeToken<ArrayList<DTOTransaccion>>() {}.getType();
-            BilleteraVirtual.DTOtransacciones = gson.fromJson(reader, listType);
+            BilleteraVirtual.transacciones = gson.fromJson(reader, listType);
         } catch (IOException e) {
             e.printStackTrace();
         }

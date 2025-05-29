@@ -35,4 +35,12 @@ public class GestorCuentaBanco {
             }
         }
     }
+    public static CuentaBanco getCuentaBancoById(String id) {
+        for (CuentaBanco cuenta : BilleteraVirtual.getCuentasBanco()) {
+            if (cuenta.getIdCuenta().equals(id)) {
+                return cuenta;
+            }
+        }
+        return null;
+    }
 }

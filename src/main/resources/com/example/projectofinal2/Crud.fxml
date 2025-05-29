@@ -61,12 +61,14 @@
                         <VBox prefHeight="655.0" prefWidth="887.0" spacing="10">
                             <children>
                                 <TextField fx:id="idCuenta" promptText="ID Cuenta" />
-                                <TextField fx:id="numeroCuenta" promptText="Número Cuenta" />
-                                <TextField fx:id="nombreUsuarioCuenta" promptText="Nombre Usuario" />
-                                <TextField fx:id="TeléfonoCuenta" promptText="Teléfono" />
-                                <ComboBox fx:id="tipoCuenta" />
+                                <TextField fx:id="SaldoCuenta" promptText="Saldo" />
+                                <TextField fx:id="ConstrasenaCuenta" promptText="Contrasena" />
+                                <TextField fx:id="NombreCuenta" promptText="Nombre" />
+                        <TextField fx:id="IdUsuario" promptText="IdUsuario" />
+                        <TextField fx:id="CorreoCuenta" promptText="Correo" />
+                        <TextField fx:id="TeléfonoCuenta" promptText="Teléfono" />
                                 <Button onAction="#agregarCuenta" text="Agregar Cuenta" />
-                                <TableView fx:id="tablaCuentas" prefHeight="450.0" prefWidth="887.0">
+                                <TableView fx:id="tablaCuentas" prefHeight="405.0" prefWidth="892.0">
                                     <columns>
                                         <TableColumn fx:id="colIdCuenta" text="ID Cuenta" />
                                         <TableColumn fx:id="colNumeroCuenta" text="Número Cuenta" />
