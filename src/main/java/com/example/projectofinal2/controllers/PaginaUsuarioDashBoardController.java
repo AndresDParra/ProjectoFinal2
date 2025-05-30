@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import lombok.Getter;
 
 import java.io.IOException;
+import java.util.Optional;
 
 @Getter
 public class PaginaUsuarioDashBoardController {
@@ -60,6 +61,12 @@ public class PaginaUsuarioDashBoardController {
     public void mostrarBienvenida(ActionEvent actionEvent) {
     }
 
+    /**
+     * Muestra el perfil del usuario en una nueva ventana.
+     *
+     * @param actionEvent Evento de acción del botón.
+     * @throws IOException Si ocurre un error al cargar el FXML.
+     */
     public void mostrarPerfil(ActionEvent actionEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Applications.class.getResource("UsuarioPerfil.fxml"));
         Stage stage = new Stage();
@@ -68,6 +75,12 @@ public class PaginaUsuarioDashBoardController {
         stage.show();
     }
 
+    /**
+     * Muestra las transacciones del usuario en una nueva ventana.
+     *
+     * @param actionEvent Evento de acción del botón.
+     * @throws IOException Si ocurre un error al cargar el FXML.
+     */
     public void mostrarTransacciones(ActionEvent actionEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Applications.class.getResource("UsuarioTransacciones.fxml"));
         Stage stage = new Stage();
@@ -79,6 +92,12 @@ public class PaginaUsuarioDashBoardController {
         usuarioTransaccionesController.initialize();
     }
 
+    /**
+     * Muestra la página de presupuestos del usuario en una nueva ventana.
+     *
+     * @param actionEvent Evento de acción del botón.
+     * @throws IOException Si ocurre un error al cargar el FXML.
+     */
     public void mostrarPresupuestos(ActionEvent actionEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Applications.class.getResource("UsuarioPresupuesto.fxml"));
         Stage stage = new Stage();
@@ -90,6 +109,38 @@ public class PaginaUsuarioDashBoardController {
         usuarioPresupuestoController.Initialize();
     }
 
+    /**
+     * Cierra la sesión del usuario y regresa a la página de inicio de sesión.
+     *
+     * @param actionEvent Evento de acción del botón.
+     */
     public void cerrarSesion(ActionEvent actionEvent) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Cerrar sesión");
+        alert.setHeaderText("¿Estás seguro de que quieres cerrar sesión?");
+        alert.setContentText("Se cerrará tu sesión actual.");
+
+        ButtonType buttonTypeYes = new ButtonType("Sí");
+        ButtonType buttonTypeNo = new ButtonType("No");
+
+        alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == buttonTypeYes) {
+            Stage stage = (Stage) ButtonCerrarSesion.getScene().getWindow();
+            stage.close();
+            // Regresar a la página de inicio de sesión
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(Applications.class.getResource("IniciarSesion.fxml"));
+                Scene scene = new Scene(fxmlLoader.load(), 630, 400);
+                Stage newStage = new Stage();
+                newStage.setTitle("Welcome to Venequi");
+                newStage.setScene(scene);
+                newStage.show();
+
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 }

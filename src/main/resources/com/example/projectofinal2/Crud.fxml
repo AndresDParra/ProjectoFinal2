@@ -89,6 +89,8 @@
                                 <TextField fx:id="montoTransaccion" promptText="Monto" />
                                 <TextField fx:id="descripcionTransaccion" promptText="Descripción" />
                                 <DatePicker fx:id="fechaTransaccion" promptText="Fecha Transaccion" />
+                        <TextField fx:id="IdCuentaOrigen" promptText="IDCuentaOrigen" />
+                        <TextField fx:id="IdCuentaDestino" promptText="IDOCuentaDestino" />
                                 <ComboBox fx:id="categoriaTransaccion" />
                                 <ComboBox fx:id="tipoTransaccion" />
                                 <Button onAction="#agregarTransaccion" text="Agregar Transacción" />

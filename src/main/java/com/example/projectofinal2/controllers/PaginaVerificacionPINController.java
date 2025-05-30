@@ -140,6 +140,10 @@ public class PaginaVerificacionPINController {
         PinArea = pinArea;
     }
 
+    /**
+     * Appends a digit to the PinArea text field.
+     * @param digit The digit to append.
+     */
     private void appendDigit(String digit) {
         if (PinArea.getText() != null) {
             PinArea.appendText(digit);
@@ -186,6 +190,11 @@ public class PaginaVerificacionPINController {
         appendDigit("0");
     }
 
+    /**
+     * Validates the PIN entered by the user and navigates to the dashboard if valid.
+     * @param actionEvent The action event triggered by the submit button.
+     * @throws IOException If there is an error loading the dashboard view.
+     */
     public void Submit(ActionEvent actionEvent) throws IOException {
         String pin = PinArea.getText();
         if (pin.length() == 4) {

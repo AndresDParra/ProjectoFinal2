@@ -24,7 +24,12 @@ public class PaginaPerfilController {
         this.labelTelefono = labelTelefono;
     }
 
-
+    /**
+     * Método para editar el perfil del usuario.
+     * Este método actualiza las etiquetas con la información del usuario actual.
+     *
+     * @param actionEvent Evento de acción que se dispara al editar el perfil.
+     */
     public void editarPerfil(ActionEvent actionEvent) {
 
         labelNombre.setText(AccesoUsuario.getCuenta_banco().getUsuario().getNombre());

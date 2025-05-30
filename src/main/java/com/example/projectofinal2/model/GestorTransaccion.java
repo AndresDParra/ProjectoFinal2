@@ -27,8 +27,8 @@ public class GestorTransaccion {
         }
     }
 
-    public static void crearTransaccion(double monto, LocalDateTime fecha, String descripcion, CategoriaTransaccion categoriaTransaccion, TipoTransaccion tipoTransaccion) {
-        Transaccion transaccion = new Transaccion(fecha, monto, descripcion, categoriaTransaccion, tipoTransaccion, null, null);
+    public static void crearTransaccion(double monto, LocalDateTime fecha, String descripcion, CategoriaTransaccion categoriaTransaccion, TipoTransaccion tipoTransaccion, TipoCuenta tipoCuenta, CuentaBanco cuentaOrigen, CuentaBanco cuentaDestino) {
+        Transaccion transaccion = new Transaccion(fecha, monto, descripcion, tipoTransaccion, tipoCuenta, cuentaOrigen, cuentaDestino);
         CuentaBanco.getTransacciones().add(transaccion);
 
     }

@@ -109,7 +109,7 @@ public class MongoDBFacade {
         Document document = new Document("fecha", transaccion.fecha().toString());
         document.append("monto", transaccion.monto());
         document.append("descripcion", transaccion.descripcion());
-        document.append("categoria", transaccion.categoria().toString());
+        document.append("TipoCuenta", transaccion.tipoCuenta().toString());
         document.append("tipo", transaccion.tipo().toString());
         document.append("cuentaOrigen", transaccion.cuentaOrigen().getIdCuenta());
         if (transaccion.cuentaDestino() != null) {
@@ -128,13 +128,23 @@ public class MongoDBFacade {
                     LocalDateTime.parse(doc.getString("fecha")),
                     doc.getDouble("monto"),
                     doc.getString("descripcion"),
-                    CategoriaTransaccion.valueOf(doc.getString("categoria")),
                     TipoTransaccion.valueOf(doc.getString("tipo")),
+                    TipoCuenta.valueOf(doc.getString("TipoCuenta")),
                     GestorCuentaBanco.getCuentaBancoById(doc.getString("cuentaOrigen")),
                     doc.containsKey("cuentaDestino") ? GestorCuentaBanco.getCuentaBancoById(doc.getString("cuentaDestino")) : null);
             BilleteraVirtual.getTransacciones().add(transaccion);
 
 
+        }
+    }
+    public static void updateBalance(String accountId, double newBalance) {
+        try (var mongoClient = MongoClients.create(System.getenv("MONGO_STRING"))) {
+            MongoDatabase db = mongoClient.getDatabase("your_database_name");
+            MongoCollection<Document> collection = db.getCollection("cuentas_banco");
+            collection.updateOne(
+                    new Document("idCuenta", accountId),
+                    new Document("$set", new Document("saldo", newBalance))
+            );
         }
     }
 }

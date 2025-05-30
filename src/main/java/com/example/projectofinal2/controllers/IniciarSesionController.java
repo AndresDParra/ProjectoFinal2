@@ -38,6 +38,13 @@ public class IniciarSesionController {
     public IniciarSesionController() {
     }
 
+    /**
+     * Método para iniciar el registro de un nuevo usuario.
+     * Este método carga la vista de registro y muestra la ventana correspondiente.
+     *
+     * @param mouseEvent Evento de ratón que se dispara al hacer clic en el botón de registro.
+     * @throws IOException Si ocurre un error al cargar el archivo FXML.
+     */
     public void IniciarRegistro(MouseEvent mouseEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Applications.class.getResource("PaginaRegistro.fxml"));
         Stage stage = new Stage();
@@ -47,7 +54,14 @@ public class IniciarSesionController {
         stage.show();
 
     }
-
+    /**
+     * Método para iniciar sesión en la aplicación.
+     * Este método verifica si el número de teléfono ingresado corresponde a una cuenta existente
+     * y, si es así, carga la vista de verificación de PIN.
+     *
+     * @param mouseEvent Evento de acción que se dispara al hacer clic en el botón de inicio de sesión.
+     * @throws IOException Si ocurre un error al cargar el archivo FXML.
+     */
     public void IniciarSesion(ActionEvent mouseEvent) throws IOException {
         System.out.println("CuentasBanco: " + BilleteraVirtual.getCuentasBanco());
         String numeroDeTelefono = EspacioInicioSesion.getText();
@@ -82,7 +96,14 @@ public class IniciarSesionController {
         }
 
     }
-
+    /**
+     * Método para iniciar sesión como administrador.
+     * Este método verifica si el número de teléfono ingresado es el número de administrador
+     * y, si es así, carga la vista de administración.
+     *
+     * @param actionEvent Evento de acción que se dispara al hacer clic en el botón de inicio de sesión del administrador.
+     * @throws IOException Si ocurre un error al cargar el archivo FXML.
+     */
     public void IniciarSesionAdmin(ActionEvent actionEvent) throws IOException {
         if (EspacioInicioSesion.getText().equals("0987654321")) {
             FXMLLoader fxmlLoader = new FXMLLoader(Applications.class.getResource("Crud.fxml"));

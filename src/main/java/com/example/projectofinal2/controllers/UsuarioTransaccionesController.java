@@ -25,13 +25,19 @@ public class UsuarioTransaccionesController {
     public UsuarioTransaccionesController() {
     }
 
+    /**
+        * Inicializa el controlador configurando la ListView y cargando las transacciones.
+     */
     public void initialize() {
         configurarListView();
         cargarTransacciones();
         listenerSeleccionTransaccion();
         configurarListenerTransacciones();
     }
-
+    /**
+     * Configura la ListView para mostrar las transacciones de forma personalizada.
+     * Cada transacción se muestra con su fecha, tipo, monto y descripción.
+     */
     private void configurarListView() {
         transaccionesListView.setCellFactory(lv -> new ListCell<Transaccion>() {
             @Override
@@ -50,15 +56,18 @@ public class UsuarioTransaccionesController {
             }
         });
     }
-
+    /**
+     * Carga las transacciones de la cuenta del usuario actual.
+     * Si no hay transacciones, muestra un mensaje en la ListView.
+     */
     private void cargarTransacciones() {
         if (AccesoUsuario.getCuenta_banco() != null) {
             Transaccion transaccion = new Transaccion(
                     LocalDateTime.now(),
                     0.0,
                     "Transacción de prueba",
-                    CategoriaTransaccion.ALIMENTOS,
                     TipoTransaccion.DEPOSITO,
+                    TipoCuenta.AHORROS,
                     AccesoUsuario.getCuenta_banco(),
                     new CuentaBanco("2344", 1234, new Usuario("Julian", "123345656", "@2301", "3125439088"), "0987")
             );
@@ -69,13 +78,18 @@ public class UsuarioTransaccionesController {
                     lista);
         }
     }
-
+    /**
+     * Configura un listener para la ListView de transacciones.
+     */
     private void configurarListenerTransacciones() {
         transaccionesListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             transaccionSeleccionada = newValue;
         });
     }
-
+    /**
+     * Configura un listener para detectar cuando se selecciona una transacción en la ListView.
+     * Actualiza la variable transaccionSeleccionada con el valor de la transacción seleccionada.
+     */
     private void listenerSeleccionTransaccion() {
         transaccionesListView.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> {
@@ -85,6 +99,9 @@ public class UsuarioTransaccionesController {
         );
     }
 
+    /**
+        * Muestra un diálogo para crear una nueva transacción.
+     */
     public Optional<Transaccion> crearTransaccionDialogo() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Nueva Transacción");
@@ -97,8 +114,8 @@ public class UsuarioTransaccionesController {
         TextField descripcionField = new TextField();
         descripcionField.setPromptText("Descripción");
 
-        ComboBox<CategoriaTransaccion> categoriaCombo = new ComboBox<>();
-        categoriaCombo.getItems().addAll(CategoriaTransaccion.values());
+        ComboBox<TipoCuenta> categoriaCombo = new ComboBox<>();
+        categoriaCombo.getItems().addAll(TipoCuenta.values());
         categoriaCombo.setPromptText("Seleccione categoría");
 
         ComboBox<TipoTransaccion> tipoCombo = new ComboBox<>();
@@ -145,8 +162,8 @@ public class UsuarioTransaccionesController {
                         LocalDateTime.now(),
                         monto,
                         descripcionField.getText(),
-                        categoriaCombo.getValue(),
                         tipoCombo.getValue(),
+                        categoriaCombo.getValue(),
                         AccesoUsuario.getCuenta_banco(),
                         destino
                 );
@@ -161,7 +178,10 @@ public class UsuarioTransaccionesController {
         }
         return Optional.empty();
     }
-
+    /**
+     * Muestra un mensaje de error en un diálogo.
+     * @param mensaje El mensaje de error a mostrar.
+     */
     private void mostrarError(String mensaje) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
@@ -169,7 +189,10 @@ public class UsuarioTransaccionesController {
         alert.setContentText(mensaje);
         alert.showAndWait();
     }
-
+    /**
+     * Maneja el evento de agregar una nueva transacción.
+     * Abre un diálogo
+     */
     public void agregarTransaccion(ActionEvent actionEvent) {
         crearTransaccionDialogo().ifPresent(nuevaTransaccion -> {
             if (!AccesoUsuario.getCuenta_banco().getTransacciones().contains(nuevaTransaccion)) {

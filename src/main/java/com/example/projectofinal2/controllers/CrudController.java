@@ -7,6 +7,7 @@ import javafx.scene.control.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 
@@ -62,6 +63,10 @@ public class CrudController {
     public TextField IdUsuario;
     public TextField CorreoCuenta;
     public TextField TeléfonoCuenta;
+    public TextField SaldoCuenta;
+    public TextField ConstrasenaCuenta;
+    public TextField IdCuentaOrigen;
+    public TextField IdCuentaDestino;
 
 
     public CrudController() {
@@ -116,20 +121,23 @@ public class CrudController {
     String categoria = categoriaTransaccion.getValue();
     String tipo = tipoTransaccion.getValue();
     String id = idCuenta.getText();
-    String idDestino = idCuenta.getText();
-    String idOrigen = idCuenta.getText();
+    String idDestino = IdCuentaDestino.getText();
+    String idOrigen = IdCuentaOrigen.getText();
+    LocalDateTime dateTime = LocalDate.parse(Fecha).atStartOfDay();
     CuentaBanco cuentaOrigen = GestorCuentaBanco.getCuentaBancoById(idOrigen);
     CuentaBanco cuentaDestino = GestorCuentaBanco.getCuentaBancoById(idDestino);
     Transaccion transaccion = new Transaccion(
-            LocalDateTime.parse(Fecha),
+            dateTime,
             Double.parseDouble(monto),
             descripcion,
-            CategoriaTransaccion.valueOf(categoria),
             TipoTransaccion.valueOf(tipo),
+            TipoCuenta.valueOf(categoria),
             cuentaOrigen,
             cuentaDestino
     );
     BilleteraVirtual.getTransacciones().add(transaccion);
+    MongoDBFacade.insertTransaccion(transaccion);
+    tablaTransacciones.getItems().add(transaccion);
 
 
     }
@@ -150,11 +158,11 @@ public class CrudController {
         colMontoTransaccion.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().monto())));
         colFechaTransaccion.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf((cellData.getValue().fecha()))));
         colDescripcionTransaccion.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().descripcion()));
-        colCategoriaTransaccion.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().categoria().toString()));
+        colCategoriaTransaccion.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().tipoCuenta().toString()));
         colTipoTransaccion.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().tipo().toString()));
 
-        categoriaTransaccion.getItems().addAll(TipoTransaccion.DEPOSITO.name(), TipoTransaccion.RETIRO.name(), TipoTransaccion.TRANSFERENCIA.name());
-        tipoTransaccion.getItems().addAll(TipoCuenta.AHORROS.name(), TipoCuenta.CORRIENTE.name());
+        categoriaTransaccion.getItems().addAll(TipoCuenta.AHORROS.name(), TipoCuenta.CORRIENTE.name());TipoTransaccion.DEPOSITO.name();
+        tipoTransaccion.getItems().addAll( TipoTransaccion.RETIRO.name(), TipoTransaccion.TRANSFERENCIA.name(), TipoTransaccion.DEPOSITO.name());
     }
 
     private void listenerSeleccion(){
@@ -183,7 +191,7 @@ public class CrudController {
                 montoTransaccion.setText(String.valueOf(selectedTransaccion.monto()));
                 descripcionTransaccion.setText(selectedTransaccion.descripcion());
                 fechaTransaccion.setValue(selectedTransaccion.fecha().toLocalDate());
-                categoriaTransaccion.setValue(selectedTransaccion.categoria().toString());
+                categoriaTransaccion.setValue(selectedTransaccion.tipoCuenta().toString());
                 tipoTransaccion.setValue(selectedTransaccion.tipo().toString());
             }
         });

@@ -76,7 +76,13 @@ public class PaginaRegistroController {
 
     public PaginaRegistroController() {
     }
-
+    /**
+     * Este método se encarga de guardar los datos del usuario en la base de datos.
+     * Se crea una nueva cuenta bancaria con los datos proporcionados en los campos de texto.
+     * Luego, se limpian los campos de texto para que el usuario pueda ingresar nuevos datos si lo desea.
+     *
+     * @param actionEvent El evento de acción que se dispara al hacer clic en el botón de guardar.
+     */
     public void Guardar(ActionEvent actionEvent) {
         var cuentaBanco = GestorCuentaBanco.crearCuentaBanco(EspacioID.getText(), 1000, EspacioPIN.getText(), EspacioNombreUsuario.getText(), EspacioIDCuenta.getText(), EspacioCorreo.getText(), EspacioIDCuenta.getText());
         EspacioIDCuenta.clear();
@@ -84,7 +90,6 @@ public class PaginaRegistroController {
         EspacioPIN.clear();
         EspacioNombreUsuario.clear();
         EspacioCorreo.clear();
-        GSON.saveCuentaDeBancoToFile("/Users/andresdavidparra/Documents/Folder para cosas importantes/TrabajoMiercolesYulbrainer/carpetaJson/RegistroCuentaBanco.json");
 
 
     }

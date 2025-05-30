@@ -15,6 +15,7 @@ public class Applications extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         BilleteraVirtual.InitializeAll();
+        MongoDBFacade.AccessMongoDBTransacciones();
         MongoDBFacade.AccessMongoDBUsuario();
         MongoDBFacade.AccessMongoDBCuentasBanco();
         FXMLLoader fxmlLoader = new FXMLLoader(Applications.class.getResource("IniciarSesion.fxml"));
